@@ -87,7 +87,7 @@ class _AuthScreenState extends State<AuthScreen>
     });
 
     final result = await _apiService.login(
-      email: '${_phoneController.text.trim()}@placeholder.com',
+      phone: _phoneController.text.trim(),
       password: _passwordController.text,
     );
 
