@@ -157,7 +157,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final pages = [
       _buildHomeTab(),
       const StoreScreen(),
-      _buildComingSoonTab('POS', Icons.point_of_sale_rounded),
+      const POSScreen(),
       const OrdersScreen(),
       _buildSettingsTab(),
     ];
