@@ -71,7 +71,25 @@ class StoreBuilderController extends Controller
             ]
         );
 
-        return redirect()->route('store.builder')
+        return redirect()->route('store.index')
             ->with('success', 'Store created successfully! Your store link: ' . url('/store/' . $slug));
+    }
+
+    // Delete store
+    public function destroy($id)
+    {
+        $store = Store::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        // Delete logo if exists
+        if ($store->logo) {
+            \Storage::disk('public')->delete($store->logo);
+        }
+
+        $store->delete();
+
+        return redirect()->route('store.index')
+            ->with('success', 'Store deleted successfully!');
     }
 }
