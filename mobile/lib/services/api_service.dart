@@ -44,22 +44,24 @@ class ApiService {
     };
   }
 
-  // LOGIN
+  // LOGIN with phone
   Future<Map<String, dynamic>> login({
-    required String email,
+    String? phone,
+    String? email,
     required String password,
   }) async {
     try {
+      final body = phone != null && phone.isNotEmpty
+          ? {'phone': phone, 'password': password}
+          : {'email': email, 'password': password};
+
       final response = await http.post(
         Uri.parse(loginUrl),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-        }),
+        body: jsonEncode(body),
       );
 
       final data = jsonDecode(response.body);
@@ -104,10 +106,11 @@ class ApiService {
     }
   }
 
-  // REGISTER
+  // REGISTER with phone
   Future<Map<String, dynamic>> register({
     required String name,
-    required String email,
+    required String phone,
+    String? email,
     required String password,
     required String passwordConfirmation,
   }) async {
@@ -120,6 +123,7 @@ class ApiService {
         },
         body: jsonEncode({
           'name': name,
+          'phone': phone,
           'email': email,
           'password': password,
           'password_confirmation': passwordConfirmation,
@@ -214,6 +218,61 @@ class ApiService {
       return {
         'success': false,
         'message': 'An error occurred: $e',
+      };
+    }
+  }
+
+  // DASHBOARD ENDPOINTS
+  Future<Map<String, dynamic>> getDashboard() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+      return data;
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Failed to get dashboard: $e',
+      };
+    }
+  }
+
+  Future<Map<String, dynamic>> getDashboardStats() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard/stats'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+      return data;
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Failed to get stats: $e',
+      };
+    }
+  }
+
+  Future<Map<String, dynamic>> getRecentActivity() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard/recent-activity'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+      return data;
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Failed to get activity: $e',
       };
     }
   }
