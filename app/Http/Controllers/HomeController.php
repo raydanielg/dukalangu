@@ -49,7 +49,10 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
-        $recentTransactions = collect([]); // Placeholder
+        $recentTransactions = \App\Models\Order::with('customer')
+            ->latest()
+            ->take(5)
+            ->get();
 
         $recentLogins = collect([
             (object)[
@@ -59,6 +62,30 @@ class HomeController extends Controller
             ]
         ]);
 
-        return view('dashboard.overview', compact('kpi', 'recentPayments', 'recentTransactions', 'recentLogins'));
+        // Chart Data - Last 14 Days
+        $chartData = [];
+        $labels = [];
+        for ($i = 13; $i >= 0; $i--) {
+            $date = \Carbon\Carbon::today()->subDays($i);
+            $labels[] = $date->format('M d');
+            
+            $chartData['orders'][] = \App\Models\Order::whereDate('created_at', $date)->count();
+            $chartData['payments'][] = \App\Models\Order::whereDate('created_at', $date)
+                ->where('payment_status', 'paid')
+                ->count();
+            $chartData['customers'][] = \App\Models\Customer::whereDate('created_at', $date)->count();
+        }
+
+        // Distribution Data
+        $distributionData = [
+            'labels' => ['Completed', 'Pending', 'Cancelled'],
+            'data' => [
+                \App\Models\Order::where('status', 'completed')->count(),
+                \App\Models\Order::where('status', 'pending')->count(),
+                \App\Models\Order::where('status', 'cancelled')->count(),
+            ]
+        ];
+
+        return view('dashboard.overview', compact('kpi', 'recentPayments', 'recentTransactions', 'recentLogins', 'chartData', 'labels', 'distributionData'));
     }
 }
