@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --sidebar-width: 260px;
-            --primary-green: #16a34a;
-            --primary-green-dark: #15803d;
-            --primary-green-light: #22c55e;
-            --sidebar-bg: #1e293b;
-            --sidebar-hover: #334155;
-            --sidebar-active: #16a34a;
+            --sidebar-width: 240px;
+            --primary: #0d9488;
+            --primary-dark: #0f766e;
+            --sidebar-bg: #0f172a;
+            --sidebar-hover: #1e293b;
+            --sidebar-active: #0d9488;
+            --text-gray: #64748b;
+            --bg-light: #f1f5f9;
         }
 
         * {
@@ -27,85 +28,91 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f8fafc;
             min-height: 100vh;
             color: #334155;
         }
 
-        /* Sidebar Styles - Clean White */
+        /* Sidebar - Dark Style Like Snippe */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
-            background: #ffffff;
+            background: var(--sidebar-bg);
             position: fixed;
             left: 0;
             top: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
             overflow-y: auto;
-            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-header {
             padding: 24px 20px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .sidebar-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            object-fit: contain;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .sidebar-brand {
-            color: #0f172a;
-            font-size: 16px;
-            font-weight: 600;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
             margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .sidebar-subtitle {
-            color: #64748b;
-            font-size: 12px;
-            margin: 0;
+        .sidebar-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
         }
 
         .sidebar-menu {
-            padding: 16px 12px;
+            flex: 1;
+            padding: 16px 0;
         }
 
-        .menu-category {
-            color: #94a3b8;
+        .menu-section-title {
+            color: #64748b;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 0 12px 8px;
-            margin-top: 24px;
+            padding: 8px 20px;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 10px 12px;
-            color: #475569;
+            padding: 10px 20px;
+            color: #94a3b8;
             text-decoration: none;
-            transition: all 0.2s ease;
-            border-radius: 8px;
-            margin: 2px 0;
+            transition: all 0.15s ease;
+            font-size: 14px;
+            position: relative;
         }
 
         .menu-item:hover {
-            background: #f1f5f9;
-            color: #0f172a;
+            color: white;
+            background: var(--sidebar-hover);
             text-decoration: none;
         }
 
         .menu-item.active {
-            background: #dcfce7;
-            color: var(--primary-green);
+            color: white;
+            background: rgba(13, 148, 136, 0.1);
+        }
+
+        .menu-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary);
         }
 
         .menu-item i {
@@ -113,26 +120,40 @@
             margin-right: 12px;
             width: 20px;
             text-align: center;
+            opacity: 0.8;
         }
 
-        .menu-item span {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .menu-badge {
+        .menu-item .badge-new {
             margin-left: auto;
-            background: var(--primary-green);
+            background: #ef4444;
             color: white;
             font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
-        /* Submenu Styles */
+        .menu-item .badge-beta {
+            margin-left: auto;
+            background: #6366f1;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .sidebar-footer {
+            padding: 16px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Submenu */
+        .has-submenu {
+            cursor: pointer;
+        }
+
         .submenu {
             display: none;
-            padding-left: 12px;
+            background: rgba(0,0,0,0.2);
         }
 
         .submenu.show {
@@ -141,24 +162,20 @@
 
         .submenu-item {
             display: block;
-            padding: 8px 12px 8px 44px;
+            padding: 8px 20px 8px 52px;
             color: #64748b;
             text-decoration: none;
             font-size: 13px;
-            transition: all 0.2s ease;
-            border-radius: 6px;
-            margin: 2px 0;
+            transition: all 0.15s ease;
         }
 
         .submenu-item:hover {
-            color: #0f172a;
-            background: #f8fafc;
+            color: white;
             text-decoration: none;
         }
 
         .submenu-item.active {
-            color: var(--primary-green);
-            background: #dcfce7;
+            color: var(--primary);
         }
 
         /* Main Content */
