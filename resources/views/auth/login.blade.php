@@ -29,15 +29,7 @@
         <!-- Right Side - Login Form -->
         <div class="auth-form-section">
             <div class="form-container">
-                <!-- Language Selector -->
-                <div class="language-selector">
-                    <button class="lang-btn">
-                        <span class="dropdown-icon">▾</span>
-                        <span class="flag-icon">🇬🇧</span>
-                    </button>
-                </div>
-
-                <div class="form-header">
+                <div class="form-header" style="margin-top: 20px;">
                     <h2 class="welcome-title">Welcome back</h2>
                     <p class="welcome-subtitle">Sign in to your account</p>
                 </div>
@@ -45,35 +37,16 @@
                 <form method="POST" action="{{ route('login') }}" class="login-form">
                     @csrf
 
-                    <!-- Phone Number Field -->
+                    <!-- Phone Number Field with Country Code -->
                     <div class="form-group">
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
+                        <div class="input-wrapper" style="display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+                            <!-- Country Code Prefix -->
+                            <span style="padding: 12px 10px; background: #f3f4f6; border-right: 1px solid var(--border-color); color: var(--text-dark); font-weight: 600; font-size: 14px; white-space: nowrap;">
+                                🇹🇿 +255
                             </span>
-                            <input id="phone" type="tel" class="form-input @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="tel" autofocus placeholder="Phone Number*" pattern="[0-9]{10}" title="Enter 10 digit phone number (e.g., 0712345678)">
+                            <input id="phone" type="tel" class="form-input @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="tel" autofocus placeholder="Phone Number*" pattern="[0-9]{9}" title="Enter 9 digit phone number without country code (e.g., 712345678)" style="border: none; border-radius: 0; flex: 1;">
                         </div>
                         @error('phone')
-                            <span class="error-message" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <!-- Optional Email Field -->
-                    <div class="form-group">
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                                </svg>
-                            </span>
-                            <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email Address (Optional)">
-                        </div>
-                        @error('email')
                             <span class="error-message" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -125,6 +98,45 @@
                     <!-- Create Account Link -->
                     <div class="create-account">
                         <p>Don't have an account? <a href="{{ route('register') }}" style="color: var(--primary-green); font-weight: 700;">Create an account here</a></p>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="social-media-links" style="text-align: center; margin: 20px 0;">
+                        <p style="font-size: 12px; color: var(--text-gray); margin-bottom: 10px;">Follow us on social media</p>
+                        <div style="display: flex; justify-content: center; gap: 16px;">
+                            <!-- Instagram -->
+                            <a href="https://instagram.com/salamapay" target="_blank" style="color: var(--text-gray); transition: color 0.2s;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                </svg>
+                            </a>
+                            <!-- Facebook -->
+                            <a href="https://facebook.com/salamapay" target="_blank" style="color: var(--text-gray); transition: color 0.2s;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                                </svg>
+                            </a>
+                            <!-- Twitter/X -->
+                            <a href="https://twitter.com/salamapay" target="_blank" style="color: var(--text-gray); transition: color 0.2s;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                                </svg>
+                            </a>
+                            <!-- WhatsApp -->
+                            <a href="https://wa.me/255700000000" target="_blank" style="color: var(--text-gray); transition: color 0.2s;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                                </svg>
+                            </a>
+                            <!-- TikTok -->
+                            <a href="https://tiktok.com/@salamapay" target="_blank" style="color: var(--text-gray); transition: color 0.2s;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Help Section -->
