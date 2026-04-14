@@ -17,9 +17,11 @@ class Store extends Model
         'slug',
         'description',
         'phone',
+        'whatsapp',
         'email',
         'address',
         'logo',
+        'template',
         'is_active'
     ];
 
