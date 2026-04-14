@@ -226,7 +226,7 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    background: linear-gradient(135deg, #16a34a, #15803d);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,7 +234,7 @@
     color: white;
     font-weight: 700;
     border: 4px solid #f3f4f6;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
 }
 </style>
 @endsection
