@@ -386,6 +386,19 @@
 
 .chart-body {
     padding: 24px;
+    height: 340px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.chart-body.collapsing {
+    height: 0;
+    padding: 0 24px;
+}
+
+.chart-body.collapse.show {
+    height: 340px;
+    padding: 24px;
 }
 
 /* Table Cards */
