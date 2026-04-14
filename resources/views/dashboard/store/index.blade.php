@@ -169,149 +169,54 @@
 
 @section('styles')
 <style>
-.store-card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    border: 1px solid #f3f4f6;
-}
-
-.store-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-}
-
-.store-preview {
-    position: relative;
-    height: 200px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.store-preview::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.1);
-}
-
-.store-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    position: relative;
-    z-index: 1;
-}
-
-.store-logo-placeholder {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    position: relative;
-    z-index: 1;
-}
-
-.store-logo-placeholder i {
-    width: 40px;
-    height: 40px;
-    color: #667eea;
-}
-
-.store-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.store-card:hover .store-overlay {
-    opacity: 1;
-}
-
-.store-actions {
-    display: flex;
-    gap: 12px;
-}
-
-.action-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+/* Stat Cards */
+.stat-card-small {
     transition: all 0.2s;
 }
 
-.action-btn i {
-    width: 20px;
-    height: 20px;
+.stat-card-small:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.action-btn.view {
-    background: white;
-    color: #111827;
+.stat-icon-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.action-btn.view:hover {
-    background: #f3f4f6;
-    transform: scale(1.1);
+.stat-icon-small i {
+    width: 24px;
+    height: 24px;
 }
 
-.action-btn.edit {
-    background: #3b82f6;
-    color: white;
-}
-
-.action-btn.edit:hover {
-    background: #2563eb;
-    transform: scale(1.1);
-}
-
-.action-btn.delete {
-    background: #ef4444;
-    color: white;
-}
-
-.action-btn.delete:hover {
-    background: #dc2626;
-    transform: scale(1.1);
-}
-
-.store-info {
-    padding: 20px;
-}
-
-.store-name {
-    font-size: 18px;
+/* Table Styles */
+.data-table th {
+    background: #f8fafc;
     font-weight: 600;
-    color: #111827;
-    margin-bottom: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.data-table td {
+    padding: 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.data-table tr:hover td {
+    background: #f8fafc;
+}
+
+.data-table .btn-sm {
+    padding: 6px 10px;
+}
+
+.data-table .btn-sm i {
+    width: 14px;
+    height: 14px;
 }
 
 .store-description {

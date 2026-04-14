@@ -625,8 +625,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   // CHART SECTION
   Widget _buildChartSection() {
-    final sales = _chartData?['sales'] ?? [];
-    final labels = _chartData?['labels'] ?? [];
+    // Default data if null
+    final sales = (_chartData?['sales'] as List<dynamic>?)?.cast<int>() ??
+        [45000, 52000, 48000, 61000, 55000, 72000, 68000];
+    final labels = (_chartData?['labels'] as List<dynamic>?)?.cast<String>() ??
+        ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    // Find max value for scaling
+    final maxValue = sales.isNotEmpty
+        ? sales.reduce((a, b) => a > b ? a : b)
+        : 100000;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -695,16 +703,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: List.generate(sales.length, (index) {
-                  final value = sales[index] as int;
-                  final maxValue = sales.cast<int>().reduce((a, b) => a > b ? a : b);
-                  final height = (value / maxValue) * 120;
+                  final value = sales[index];
+                  final height = maxValue > 0 ? (value / maxValue) * 120 : 0.0;
 
                   return Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          height: height.toDouble(),
+                          height: height > 0 ? height : 4,
                           margin: const EdgeInsets.symmetric(horizontal: 4),
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
@@ -720,7 +727,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          labels[index] as String,
+                          labels.length > index ? labels[index] : '',
                           style: GoogleFonts.nunito(
                             fontSize: 11,
                             color: AppTheme.textGray,
