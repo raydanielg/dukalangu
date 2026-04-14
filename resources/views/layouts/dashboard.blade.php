@@ -466,26 +466,40 @@
     @yield('styles')
 </head>
 <body>
-    <!-- Sidebar -->
+    <!-- Sidebar - Snippe Style -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}" class="sidebar-logo">
-            <h3 class="sidebar-brand">{{ config('app.name') }}</h3>
-            <p class="sidebar-subtitle">Business Dashboard</p>
+            <h3 class="sidebar-brand">
+                <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}">
+                {{ config('app.name') }}
+            </h3>
         </div>
 
         <nav class="sidebar-menu">
-            <p class="menu-category">Main</p>
+            <div class="menu-section-title">Main Menu</div>
             <a href="{{ route('home') }}" class="menu-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-grid"></i>
+                <span>Overview</span>
+            </a>
+            <a href="{{ route('dashboard') }}" class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="bi bi-speedometer2"></i>
                 <span>Dashboard</span>
             </a>
+            <a href="#" class="menu-item has-submenu" onclick="toggleSubmenu('analytics-submenu'); return false;">
+                <i class="bi bi-graph-up"></i>
+                <span>Analytics</span>
+                <i class="bi bi-chevron-down ms-auto small"></i>
+            </a>
+            <div id="analytics-submenu" class="submenu">
+                <a href="#" class="submenu-item">Sales Report</a>
+                <a href="#" class="submenu-item">Products Report</a>
+            </div>
 
-            <p class="menu-category">Products</p>
-            <a href="#" class="menu-item" onclick="toggleSubmenu('products-submenu'); return false;">
-                <i class="bi bi-box-seam-fill"></i>
+            <div class="menu-section-title">Business</div>
+            <a href="#" class="menu-item has-submenu" onclick="toggleSubmenu('products-submenu'); return false;">
+                <i class="bi bi-box-seam"></i>
                 <span>Products</span>
-                <i class="bi bi-chevron-down ms-auto" style="font-size: 12px;"></i>
+                <i class="bi bi-chevron-down ms-auto small"></i>
             </a>
             <div id="products-submenu" class="submenu">
                 <a href="{{ route('products.index') }}" class="submenu-item {{ request()->routeIs('products.index') ? 'active' : '' }}">All Products</a>
@@ -493,78 +507,77 @@
                 <a href="{{ route('products.out-of-stock') }}" class="submenu-item {{ request()->routeIs('products.out-of-stock') ? 'active' : '' }}">Out of Stock</a>
                 <a href="{{ route('products.create') }}" class="submenu-item {{ request()->routeIs('products.create') ? 'active' : '' }}">Add Product</a>
             </div>
-
-            <p class="menu-category">Sales</p>
-            <a href="{{ route('pos') }}" class="menu-item {{ request()->routeIs('pos') ? 'active' : '' }}">
-                <i class="bi bi-cart-fill"></i>
-                <span>POS</span>
-                <span class="menu-badge">New</span>
-            </a>
             <a href="{{ route('orders') }}" class="menu-item {{ request()->routeIs('orders') ? 'active' : '' }}">
-                <i class="bi bi-receipt"></i>
+                <i class="bi bi-cart3"></i>
                 <span>Orders</span>
             </a>
-
-            <p class="menu-category">Business</p>
-            <a href="#" class="menu-item">
-                <i class="bi bi-graph-up"></i>
-                <span>Analytics</span>
-                <span class="menu-badge">Soon</span>
+            <a href="{{ route('pos') }}" class="menu-item {{ request()->routeIs('pos') ? 'active' : '' }}">
+                <i class="bi bi-cash-coin"></i>
+                <span>POS</span>
+                <span class="badge-new">New</span>
             </a>
             <a href="#" class="menu-item">
-                <i class="bi bi-people-fill"></i>
+                <i class="bi bi-people"></i>
                 <span>Customers</span>
             </a>
 
-            <p class="menu-category">Settings</p>
+            <div class="menu-section-title">Settings</div>
             <a href="#" class="menu-item">
                 <i class="bi bi-shop"></i>
                 <span>Store Settings</span>
             </a>
             <a href="#" class="menu-item">
-                <i class="bi bi-gear-fill"></i>
-                <span>Settings</span>
-            </a>
-
-            <p class="menu-category">Account</p>
-            <a href="#" class="menu-item">
-                <i class="bi bi-person-fill"></i>
+                <i class="bi bi-person-circle"></i>
                 <span>My Profile</span>
             </a>
+            <a href="#" class="menu-item">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
             <a href="#" class="menu-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Logout</span>
+                <span>Log out</span>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-        </nav>
+        </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Top Navbar -->
-        <nav class="top-navbar">
-            <h1 class="page-title">@yield('page-title', 'Dashboard')</h1>
-            <div class="top-nav-right">
-                <button class="notification-btn">
+        <!-- Top Header - Snippe Style -->
+        <header class="top-header">
+            <div class="top-header-left">
+                <h1>@yield('page-title', 'Overview')</h1>
+            </div>
+            <div class="top-header-right">
+                <div class="header-search">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <button class="header-btn">
                     <i class="bi bi-bell"></i>
-                    <span class="notification-badge">3</span>
+                    <span class="header-badge">3</span>
                 </button>
-                <div class="user-menu dropdown">
-                    <div class="user-avatar">
+                <button class="header-btn">
+                    <i class="bi bi-question-circle"></i>
+                </button>
+                <div class="header-user">
+                    <div class="header-avatar">
                         {{ substr(Auth::user()->name ?? 'U', 0, 1) }}
                     </div>
-                    <div class="user-info">
-                        <div class="user-name">{{ Auth::user()->name ?? 'User' }}</div>
-                        <div class="user-role">Store Owner</div>
-                    </div>
+                    <span class="header-username">{{ Auth::user()->email ?? Auth::user()->phone ?? 'User' }}</span>
+                    <i class="bi bi-chevron-down small ms-2"></i>
                 </div>
             </div>
-        </nav>
+        </header>
 
         <!-- Content Area -->
-        <div class="content-area">
+        <div class="content-wrapper">
             @yield('content')
         </div>
     </main>
