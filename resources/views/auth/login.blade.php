@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Sign In')
-@section('meta_description', 'Sign in to Salamapay - Tanzania\'s trusted payment and job platform. Access secure payments and job opportunities.')
-@section('meta_keywords', 'login Salamapay, sign in, payment portal login, secure payments Tanzania, job portal login')
+@section('meta_description', 'Sign in to your '.config('app.name').' account. Manage your online store, products, and orders all in one place.')
+@section('meta_keywords', 'login '.config('app.name').', sign in, business account Tanzania, online store login, manage products')
 
 @section('content')
 <div class="auth-container">
@@ -16,15 +16,15 @@
                         <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 120px; height: auto;">
                     </div>
                 </div>
-                <h1 class="portal-title">Salamapay</h1>
-                <p class="portal-subtitle">SECURE PAYMENTS & CAREER OPPORTUNITIES</p>
+                <h1 class="portal-title">{{ config('app.name') }}</h1>
+                <p class="portal-subtitle">CREATE YOUR ONLINE STORE & SELL ANYWHERE</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Connect with top employers and process secure payments all in one platform. Your trusted partner for financial growth and career success.
+                    Manage your business online. Create your store, advertise products, receive orders, and grow your customer base - all in one seamless platform.
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
+                <p class="copyright">© 2026 {{ config('app.name') }}. All rights reserved.</p>
             </div>
         </div>
 
@@ -114,7 +114,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
                     </div>
                 </form>
             </div>
