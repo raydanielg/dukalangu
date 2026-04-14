@@ -10,18 +10,41 @@
         <!-- Left Side - Branding -->
         <div class="auth-branding">
             <div class="branding-content">
-                <div class="logo-section">
-                    <!-- Logo without box/circle design -->
-                    <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}" class="salamapay-logo" style="width: 150px; height: auto; margin-bottom: 16px;">
+                <!-- Welcome Image with Animation -->
+                <div class="welcome-image-section" style="margin-bottom: 20px; text-align: center;">
+                    <img src="{{ asset('Karibu salamapay.png') }}" alt="Karibu {{ config('app.name') }}" class="welcome-image" style="width: 180px; height: auto; animation: fadeInDown 1s ease-out;">
                 </div>
-                <h1 class="portal-title">{{ config('app.name') }}</h1>
-                <p class="portal-subtitle">CREATE YOUR ONLINE STORE & SELL ANYWHERE</p>
-                <div class="divider-line"></div>
-                <p class="portal-description">
+
+                <!-- Decorative Line -->
+                <div class="decorative-line" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--primary-green-light), var(--primary-green), var(--primary-green-dark)); margin: 0 auto 20px; border-radius: 2px; animation: expandLine 1.5s ease-out;"></div>
+
+                <!-- App Preview Image with Float Animation -->
+                <div class="app-preview-section" style="margin-bottom: 20px; text-align: center;">
+                    <img src="{{ asset('app.png') }}" alt="{{ config('app.name') }} App" class="app-image" style="width: 200px; height: auto; animation: floatAnimation 3s ease-in-out infinite, fadeInUp 1s ease-out;">
+                </div>
+
+                <!-- Logo -->
+                <div class="logo-section" style="animation: fadeIn 1.5s ease-out;">
+                    <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}" class="salamapay-logo" style="width: 100px; height: auto; margin-bottom: 12px;">
+                </div>
+
+                <!-- Title with Animation -->
+                <h1 class="portal-title" style="animation: slideInLeft 1s ease-out;">{{ config('app.name') }}</h1>
+
+                <!-- Subtitle -->
+                <p class="portal-subtitle" style="animation: fadeIn 1.2s ease-out;">CREATE YOUR ONLINE STORE & SELL ANYWHERE</p>
+
+                <!-- Animated Divider -->
+                <div class="divider-line" style="animation: expandWidth 1s ease-out;"></div>
+
+                <!-- Description -->
+                <p class="portal-description" style="animation: fadeInUp 1.3s ease-out;">
                     Manage your business online. Create your store, advertise products, receive orders, and grow your customer base - all in one seamless platform.
                 </p>
             </div>
-            <div class="branding-footer">
+
+            <!-- Animated Footer -->
+            <div class="branding-footer" style="animation: fadeIn 2s ease-out;">
                 <p class="copyright">© 2026 {{ config('app.name') }}. All rights reserved.</p>
             </div>
         </div>
