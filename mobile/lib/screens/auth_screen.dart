@@ -756,42 +756,52 @@ class _AuthScreenState extends State<AuthScreen>
     );
   }
 
-  Widget _buildSocialLoginButtons() {
-    return Column(
+  Widget _buildSocialIconsRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Google Sign In
-        _buildSocialButton(
+        // Google
+        _buildSocialIconButton(
           onTap: () {},
-          icon: _buildGoogleIcon(),
-          label: 'Sign in with Google',
+          icon: _buildGoogleIcon(size: 24),
+          bgColor: Colors.white,
         ),
-        const SizedBox(height: 12),
-        // Facebook Sign In
-        _buildSocialButton(
+        const SizedBox(width: 20),
+        // Facebook
+        _buildSocialIconButton(
           onTap: () {},
-          icon: _buildFacebookIcon(),
-          label: 'Sign in with Facebook',
+          icon: const Icon(
+            Icons.facebook,
+            color: Color(0xFF1877F2),
+            size: 28,
+          ),
+          bgColor: Colors.white,
         ),
-        const SizedBox(height: 12),
-        // X/Twitter Sign In
-        _buildSocialButton(
+        const SizedBox(width: 20),
+        // X (Twitter)
+        _buildSocialIconButton(
           onTap: () {},
-          icon: _buildXIcon(),
-          label: 'Sign in with X',
+          icon: const Icon(
+            Icons.close,
+            color: Colors.black,
+            size: 24,
+          ),
+          bgColor: Colors.white,
         ),
       ],
     );
   }
 
-  Widget _buildSocialButton({
+  Widget _buildSocialIconButton({
     required VoidCallback onTap,
     required Widget icon,
-    required String label,
+    required Color bgColor,
   }) {
     return Container(
-      height: 48,
+      width: 50,
+      height: 50,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: bgColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: const Color(0xFFe2e8f0),
@@ -799,8 +809,9 @@ class _AuthScreenState extends State<AuthScreen>
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 4,
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 8,
+            spreadRadius: 1,
             offset: const Offset(0, 2),
           ),
         ],
@@ -811,52 +822,19 @@ class _AuthScreenState extends State<AuthScreen>
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(12),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                icon,
-                const SizedBox(width: 12),
-                Text(
-                  label,
-                  style: GoogleFonts.nunito(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppTheme.textDark,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          child: Center(child: icon),
         ),
       ),
     );
   }
 
-  Widget _buildGoogleIcon() {
+  Widget _buildGoogleIcon({double size = 20}) {
     return SizedBox(
-      width: 20,
-      height: 20,
+      width: size,
+      height: size,
       child: CustomPaint(
         painter: GoogleIconPainter(),
       ),
-    );
-  }
-
-  Widget _buildFacebookIcon() {
-    return const Icon(
-      Icons.facebook,
-      color: Color(0xFF1877F2),
-      size: 20,
-    );
-  }
-
-  Widget _buildXIcon() {
-    return const Icon(
-      Icons.close,
-      color: Colors.black,
-      size: 20,
     );
   }
 }
