@@ -207,7 +207,7 @@ class _AuthScreenState extends State<AuthScreen>
           const SizedBox(height: 24),
           // Title
           Text(
-            'Salama Portal',
+            'SalamaPay',
             style: GoogleFonts.nunito(
               fontSize: 32,
               fontWeight: FontWeight.bold,
@@ -736,7 +736,7 @@ class _AuthScreenState extends State<AuthScreen>
         GestureDetector(
           onTap: () {},
           child: Text(
-            'ajira@pccb.go.tz',
+            'info@zerixa.co.tz',
             style: GoogleFonts.nunito(
               fontSize: 13,
               fontWeight: FontWeight.w700,
@@ -746,7 +746,7 @@ class _AuthScreenState extends State<AuthScreen>
         ),
         const SizedBox(height: 20),
         Text(
-          '© 2026 PCCB',
+          '© 2026 SalamaPay. All rights reserved.',
           style: GoogleFonts.nunito(
             fontSize: 12,
             color: Colors.white.withOpacity(0.6),
@@ -755,4 +755,158 @@ class _AuthScreenState extends State<AuthScreen>
       ],
     );
   }
+
+  Widget _buildSocialLoginButtons() {
+    return Column(
+      children: [
+        // Google Sign In
+        _buildSocialButton(
+          onTap: () {},
+          icon: _buildGoogleIcon(),
+          label: 'Sign in with Google',
+        ),
+        const SizedBox(height: 12),
+        // Facebook Sign In
+        _buildSocialButton(
+          onTap: () {},
+          icon: _buildFacebookIcon(),
+          label: 'Sign in with Facebook',
+        ),
+        const SizedBox(height: 12),
+        // X/Twitter Sign In
+        _buildSocialButton(
+          onTap: () {},
+          icon: _buildXIcon(),
+          label: 'Sign in with X',
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialButton({
+    required VoidCallback onTap,
+    required Widget icon,
+    required String label,
+  }) {
+    return Container(
+      height: 48,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: const Color(0xFFe2e8f0),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                icon,
+                const SizedBox(width: 12),
+                Text(
+                  label,
+                  style: GoogleFonts.nunito(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppTheme.textDark,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGoogleIcon() {
+    return SizedBox(
+      width: 20,
+      height: 20,
+      child: CustomPaint(
+        painter: GoogleIconPainter(),
+      ),
+    );
+  }
+
+  Widget _buildFacebookIcon() {
+    return const Icon(
+      Icons.facebook,
+      color: Color(0xFF1877F2),
+      size: 20,
+    );
+  }
+
+  Widget _buildXIcon() {
+    return const Icon(
+      Icons.close,
+      color: Colors.black,
+      size: 20,
+    );
+  }
+}
+
+class GoogleIconPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..style = PaintingStyle.fill;
+
+    // Blue
+    paint.color = const Color(0xFF4285F4);
+    canvas.drawArc(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      -0.5,
+      1.5,
+      false,
+      paint..strokeWidth = size.width * 0.15,
+    );
+
+    // Red
+    paint.color = const Color(0xFFEA4335);
+    canvas.drawArc(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      1.2,
+      1.0,
+      false,
+      paint,
+    );
+
+    // Yellow
+    paint.color = const Color(0xFFFBBC05);
+    canvas.drawArc(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      2.5,
+      0.8,
+      false,
+      paint,
+    );
+
+    // Green
+    paint.color = const Color(0xFF34A853);
+    canvas.drawArc(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      -2.0,
+      1.0,
+      false,
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
