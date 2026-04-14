@@ -802,63 +802,76 @@ class _AuthScreenState extends State<AuthScreen>
     );
   }
 
-  Widget _buildGoogleIcon({double size = 20}) {
+  Widget _buildGoogleIcon({double size = 32}) {
     return SizedBox(
       width: size,
       height: size,
       child: CustomPaint(
-        painter: GoogleIconPainter(),
+        painter: GoogleGIconPainter(),
       ),
     );
   }
 }
 
-class GoogleIconPainter extends CustomPainter {
+class GoogleGIconPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..style = PaintingStyle.fill;
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width * 0.4;
+    final strokeWidth = size.width * 0.12;
 
-    // Blue
-    paint.color = const Color(0xFF4285F4);
-    canvas.drawArc(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      -0.5,
-      1.5,
-      false,
-      paint..strokeWidth = size.width * 0.15,
-    );
+    // Draw G shape with segments
+    final segments = [
+      // Blue segment (top right)
+      _Segment(center, radius, -0.8, 1.6, const Color(0xFF4285F4)),
+      // Red segment (bottom right)
+      _Segment(center, radius, 0.9, 1.2, const Color(0xFFEA4335)),
+      // Yellow segment (bottom left)
+      _Segment(center, radius, 2.2, 0.9, const Color(0xFFFBBC05)),
+      // Green segment (top left)
+      _Segment(center, radius, -2.5, 1.0, const Color(0xFF34A853)),
+    ];
 
-    // Red
-    paint.color = const Color(0xFFEA4335);
-    canvas.drawArc(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      1.2,
-      1.0,
-      false,
-      paint,
-    );
+    for (final segment in segments) {
+      final paint = Paint()
+        ..color = segment.color
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth
+        ..strokeCap = StrokeCap.round;
 
-    // Yellow
-    paint.color = const Color(0xFFFBBC05);
-    canvas.drawArc(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      2.5,
-      0.8,
-      false,
-      paint,
-    );
+      canvas.drawArc(
+        Rect.fromCircle(center: segment.center, radius: segment.radius),
+        segment.startAngle,
+        segment.sweepAngle,
+        false,
+        paint,
+      );
+    }
 
-    // Green
-    paint.color = const Color(0xFF34A853);
-    canvas.drawArc(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      -2.0,
-      1.0,
-      false,
-      paint,
+    // Draw horizontal blue line (the crossbar of G)
+    final linePaint = Paint()
+      ..color = const Color(0xFF4285F4)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    canvas.drawLine(
+      Offset(center.dx, center.dy - radius * 0.1),
+      Offset(center.dx + radius * 0.8, center.dy - radius * 0.1),
+      linePaint,
     );
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
+}
+
+class _Segment {
+  final Offset center;
+  final double radius;
+  final double startAngle;
+  final double sweepAngle;
+  final Color color;
+
+  _Segment(this.center, this.radius, this.startAngle, this.sweepAngle, this.color);
 }
