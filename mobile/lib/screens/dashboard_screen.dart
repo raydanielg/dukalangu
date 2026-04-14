@@ -445,7 +445,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         stat['title'] as String,
                         style: GoogleFonts.nunito(
                           fontSize: 13,
-                          color: AppTheme.textGray,
+                          color: Colors.white.withOpacity(0.8),
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -454,7 +454,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         style: GoogleFonts.nunito(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textDark,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -466,7 +466,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: (stat['color'] as Color).withOpacity(0.1),
+                              color: Colors.white.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -474,7 +474,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               style: GoogleFonts.nunito(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
-                                color: stat['color'] as Color,
+                                color: Colors.white,
                               ),
                             ),
                           ),
@@ -483,7 +483,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             stat['subtitle'] as String,
                             style: GoogleFonts.nunito(
                               fontSize: 11,
-                              color: AppTheme.textGray,
+                              color: Colors.white.withOpacity(0.7),
                             ),
                           ),
                         ],
