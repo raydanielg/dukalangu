@@ -176,6 +176,75 @@ class StoreController extends Controller
     }
 
     /**
+     * Get single product
+     */
+    public function getProduct(Request $request, $id)
+    {
+        $user = $request->user();
+        
+        $product = Product::where('id', $id)
+            ->where('user_id', $user->id)
+            ->first();
+        
+        if (!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product not found'
+            ], 404);
+        }
+        
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'price' => $product->price,
+                'stock' => $product->stock,
+                'category' => $product->category,
+                'image_url' => $product->image_url,
+                'is_active' => $product->is_active,
+                'created_at' => $product->created_at->format('M d, Y'),
+            ]
+        ]);
+    }
+
+    /**
+     * Search products
+     */
+    public function searchProducts(Request $request)
+    {
+        $user = $request->user();
+        $query = $request->get('q', '');
+        
+        $products = Product::where('user_id', $user->id)
+            ->where(function($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%")
+                  ->orWhere('category', 'like', "%{$query}%");
+            })
+            ->get()
+            ->map(function ($product) {
+                return [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'stock' => $product->stock,
+                    'category' => $product->category,
+                    'image_url' => $product->image_url,
+                    'is_active' => $product->is_active,
+                ];
+            });
+        
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'products' => $products,
+                'total' => $products->count(),
+            ]
+        ]);
+    }
+
+    /**
      * Get categories
      */
     public function getCategories(Request $request)
