@@ -305,7 +305,13 @@ class _AuthScreenState extends State<AuthScreen>
               children: [
                 // Header
                 _buildCardHeader(),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
+                // Social Login Icons (Row)
+                _buildSocialIconsRow(),
+                const SizedBox(height: 20),
+                // Divider
+                _buildOrDivider(),
+                const SizedBox(height: 20),
                 // Error message
                 if (_errorMessage != null) _buildErrorBanner(),
                 if (_errorMessage != null) const SizedBox(height: 16),
@@ -323,12 +329,6 @@ class _AuthScreenState extends State<AuthScreen>
                 const SizedBox(height: 24),
                 // Create account
                 _buildCreateAccount(),
-                const SizedBox(height: 20),
-                // Divider
-                _buildOrDivider(),
-                const SizedBox(height: 20),
-                // Social login buttons
-                _buildSocialLoginButtons(),
               ],
             ),
           ),
