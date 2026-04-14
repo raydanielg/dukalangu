@@ -102,31 +102,39 @@
     </div>
 </div>
 
-<!-- Charts Row -->
+<!-- Charts Row - Expandable -->
 <div class="row mb-4">
     <div class="col-lg-8">
-        <div class="chart-card animate__animated animate__fadeIn">
-            <div class="chart-header">
-                <h5 class="chart-title">Activity Trend (Last 14 Days)</h5>
-                <div class="chart-legend">
-                    <span class="legend-item"><span class="dot blue"></span>Orders</span>
-                    <span class="legend-item"><span class="dot green"></span>Payments</span>
-                    <span class="legend-item"><span class="dot orange"></span>Customers</span>
+        <div class="chart-card animate__animated animate__fadeIn" id="activityChartCard">
+            <div class="chart-header" style="cursor: pointer;" onclick="toggleChart('activityChartBody', 'activityToggleIcon')">
+                <h5 class="chart-title">
+                    <i data-lucide="activity" class="me-2"></i>Activity Trend (Last 14 Days)
+                </h5>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="dot blue"></span>Orders</span>
+                        <span class="legend-item"><span class="dot green"></span>Payments</span>
+                        <span class="legend-item"><span class="dot orange"></span>Customers</span>
+                    </div>
+                    <i data-lucide="chevron-down" id="activityToggleIcon" style="transition: transform 0.3s;"></i>
                 </div>
             </div>
-            <div class="chart-body">
+            <div class="chart-body collapse show" id="activityChartBody">
                 <canvas id="activityChart" height="300"></canvas>
             </div>
         </div>
     </div>
     <div class="col-lg-4">
-        <div class="chart-card animate__animated animate__fadeIn" style="animation-delay: 0.2s;">
-            <div class="chart-header">
-                <h5 class="chart-title">Distribution</h5>
+        <div class="chart-card animate__animated animate__fadeIn" style="animation-delay: 0.2s;" id="distributionChartCard">
+            <div class="chart-header" style="cursor: pointer;" onclick="toggleChart('distributionChartBody', 'distributionToggleIcon')">
+                <h5 class="chart-title">
+                    <i data-lucide="pie-chart" class="me-2"></i>Order Distribution
+                </h5>
+                <i data-lucide="chevron-down" id="distributionToggleIcon" style="transition: transform 0.3s;"></i>
             </div>
-            <div class="chart-body text-center">
+            <div class="chart-body text-center collapse show" id="distributionChartBody">
                 <canvas id="distributionChart" height="260"></canvas>
-                <p class="text-muted mt-3 mb-0">No data available</p>
+                <div id="distributionLegend" class="mt-3"></div>
             </div>
         </div>
     </div>
@@ -473,15 +481,35 @@
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Activity Trend Chart
+// Toggle Chart Function
+function toggleChart(bodyId, iconId) {
+    const body = document.getElementById(bodyId);
+    const icon = document.getElementById(iconId);
+    
+    if (body.classList.contains('show')) {
+        body.classList.remove('show');
+        icon.style.transform = 'rotate(-90deg)';
+    } else {
+        body.classList.add('show');
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+// Real Data from Database
+const chartLabels = @json($labels);
+const ordersData = @json($chartData['orders']);
+const paymentsData = @json($chartData['payments']);
+const customersData = @json($chartData['customers']);
+
+// Activity Trend Chart with Real Data
 const activityCtx = document.getElementById('activityChart').getContext('2d');
 const activityChart = new Chart(activityCtx, {
     type: 'line',
     data: {
-        labels: ['2026-04-01', '2026-04-02', '2026-04-03', '2026-04-04', '2026-04-05', '2026-04-06', '2026-04-07', '2026-04-08', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-12', '2026-04-13', '2026-04-14'],
+        labels: chartLabels,
         datasets: [{
             label: 'Orders',
-            data: [3, 2, 4, 5, 3, 4, 7, 4, 3, 4, 2, 5, 3, 2],
+            data: ordersData,
             borderColor: '#3b82f6',
             backgroundColor: 'rgba(59, 130, 246, 0.1)',
             fill: true,
@@ -490,7 +518,7 @@ const activityChart = new Chart(activityCtx, {
             pointBackgroundColor: '#3b82f6'
         }, {
             label: 'Payments',
-            data: [1, 0, 1, 1, 0, 1, 2, 1, 1, 0, 1, 0, 1, 1],
+            data: paymentsData,
             borderColor: '#10b981',
             backgroundColor: 'transparent',
             fill: false,
@@ -499,7 +527,7 @@ const activityChart = new Chart(activityCtx, {
             pointBackgroundColor: '#10b981'
         }, {
             label: 'Customers',
-            data: [2, 1, 2, 3, 1, 2, 4, 2, 2, 1, 2, 3, 2, 1],
+            data: customersData,
             borderColor: '#f59e0b',
             backgroundColor: 'transparent',
             fill: false,
@@ -514,6 +542,15 @@ const activityChart = new Chart(activityCtx, {
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false,
+                backgroundColor: 'rgba(0,0,0,0.8)',
+                titleFont: { size: 13 },
+                bodyFont: { size: 12 },
+                padding: 10,
+                cornerRadius: 8
             }
         },
         scales: {
@@ -524,7 +561,8 @@ const activityChart = new Chart(activityCtx, {
                 },
                 ticks: {
                     font: { size: 11 },
-                    color: '#9ca3af'
+                    color: '#9ca3af',
+                    stepSize: 1
                 }
             },
             x: {
@@ -537,20 +575,30 @@ const activityChart = new Chart(activityCtx, {
                     maxRotation: 45
                 }
             }
+        },
+        interaction: {
+            mode: 'nearest',
+            axis: 'x',
+            intersect: false
         }
     }
 });
 
-// Distribution Doughnut Chart
+// Real Distribution Data
+const distLabels = @json($distributionData['labels']);
+const distData = @json($distributionData['data']);
+
+// Distribution Doughnut Chart with Real Data
 const distCtx = document.getElementById('distributionChart').getContext('2d');
 const distChart = new Chart(distCtx, {
     type: 'doughnut',
     data: {
-        labels: ['No data'],
+        labels: distLabels,
         datasets: [{
-            data: [1],
-            backgroundColor: ['#e5e7eb'],
-            borderWidth: 0
+            data: distData,
+            backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+            borderWidth: 0,
+            hoverOffset: 4
         }]
     },
     options: {
@@ -560,9 +608,44 @@ const distChart = new Chart(distCtx, {
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                backgroundColor: 'rgba(0,0,0,0.8)',
+                titleFont: { size: 13 },
+                bodyFont: { size: 12 },
+                padding: 10,
+                cornerRadius: 8,
+                callbacks: {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const value = context.parsed || 0;
+                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                        return label + ': ' + value + ' (' + percentage + '%)';
+                    }
+                }
             }
         }
     }
 });
+
+// Add Custom Legend for Distribution
+const legendContainer = document.getElementById('distributionLegend');
+const colors = ['#10b981', '#f59e0b', '#ef4444'];
+const totalOrders = distData.reduce((a, b) => a + b, 0);
+
+let legendHTML = '<div class="d-flex justify-content-center gap-3 flex-wrap">';
+distLabels.forEach((label, index) => {
+    const count = distData[index];
+    const percentage = totalOrders > 0 ? Math.round((count / totalOrders) * 100) : 0;
+    legendHTML += `
+        <div class="d-flex align-items-center gap-2">
+            <span style="width: 12px; height: 12px; border-radius: 50%; background: ${colors[index]};"></span>
+            <span class="small text-muted">${label}: <strong>${count}</strong> (${percentage}%)</span>
+        </div>
+    `;
+});
+legendHTML += '</div>';
+legendContainer.innerHTML = legendHTML;
 </script>
 @endsection
