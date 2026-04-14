@@ -168,11 +168,11 @@
             transition: all 0.3s ease;
         }
 
-        /* Top Navbar */
+        /* Top Navbar - Clean Minimal */
         .top-navbar {
-            background: white;
-            padding: 15px 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: #ffffff;
+            padding: 16px 32px;
+            border-bottom: 1px solid #f1f5f9;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -182,16 +182,16 @@
         }
 
         .page-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e293b;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0f172a;
             margin: 0;
         }
 
         .top-nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
 
         .notification-btn {
@@ -201,12 +201,19 @@
             font-size: 20px;
             color: #64748b;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .notification-btn:hover {
+            background: #f1f5f9;
         }
 
         .notification-badge {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: 4px;
+            right: 4px;
             background: #ef4444;
             color: white;
             font-size: 10px;
@@ -217,20 +224,28 @@
         .user-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
+            padding: 6px 12px 6px 6px;
+            border-radius: 24px;
+            transition: all 0.2s;
+        }
+
+        .user-menu:hover {
+            background: #f1f5f9;
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: var(--primary-green);
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 600;
+            font-size: 14px;
         }
 
         .user-info {
@@ -239,7 +254,7 @@
 
         .user-name {
             font-weight: 600;
-            color: #1e293b;
+            color: #0f172a;
             font-size: 14px;
         }
 
