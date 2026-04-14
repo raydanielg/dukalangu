@@ -353,6 +353,118 @@ class ApiService {
     }
   }
 
+  // STORE APIs
+  Future<Map<String, dynamic>> getStore() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(Uri.parse('$baseUrl/store'), headers: headers);
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to get store: $e'};
+    }
+  }
+
+  Future<Map<String, dynamic>> getStoreProducts() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(Uri.parse('$baseUrl/store/products'), headers: headers);
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to get products: $e'};
+    }
+  }
+
+  Future<Map<String, dynamic>> createProduct(Map<String, dynamic> product) async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.post(
+        Uri.parse('$baseUrl/store/products'),
+        headers: headers,
+        body: jsonEncode(product),
+      );
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to create product: $e'};
+    }
+  }
+
+  Future<Map<String, dynamic>> getStoreAnalytics() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(Uri.parse('$baseUrl/store/analytics'), headers: headers);
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to get analytics: $e'};
+    }
+  }
+
+  // ORDER APIs
+  Future<Map<String, dynamic>> getOrders({String? status}) async {
+    try {
+      final headers = await getHeaders();
+      final url = status != null 
+          ? '$baseUrl/orders?status=$status' 
+          : '$baseUrl/orders';
+      final response = await http.get(Uri.parse(url), headers: headers);
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to get orders: $e'};
+    }
+  }
+
+  Future<Map<String, dynamic>> getOrderStats() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(Uri.parse('$baseUrl/orders/stats'), headers: headers);
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to get order stats: $e'};
+    }
+  }
+
+  Future<Map<String, dynamic>> createOrder(Map<String, dynamic> order) async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.post(
+        Uri.parse('$baseUrl/orders'),
+        headers: headers,
+        body: jsonEncode(order),
+      );
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to create order: $e'};
+    }
+  }
+
+  Future<Map<String, dynamic>> updateOrderStatus(int orderId, String status) async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.put(
+        Uri.parse('$baseUrl/orders/$orderId/status'),
+        headers: headers,
+        body: jsonEncode({'status': status}),
+      );
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to update order: $e'};
+    }
+  }
+
+  // QR Code verification
+  Future<Map<String, dynamic>> verifyQRCode(String code) async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.post(
+        Uri.parse('$baseUrl/store/verify-qr'),
+        headers: headers,
+        body: jsonEncode({'code': code}),
+      );
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'QR verification failed: $e'};
+    }
+  }
+
   // Check if user is logged in
   Future<bool> isLoggedIn() async {
     final token = await getToken();
