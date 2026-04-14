@@ -101,7 +101,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
+                        <p>Need help? Contact us at <a href="mailto:info@zerixa.co.tz">info@zerixa.co.tz</a></p>
                     </div>
                 </form>
             </div>
