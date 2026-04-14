@@ -495,12 +495,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   width: 56,
                   height: 56,
                   decoration: BoxDecoration(
-                    color: (stat['color'] as Color).withOpacity(0.1),
+                    color: Colors.white.withOpacity(0.25),
                     borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.4),
+                      width: 1,
+                    ),
                   ),
                   child: Icon(
                     stat['icon'] as IconData,
-                    color: stat['color'] as Color,
+                    color: Colors.white,
                     size: 28,
                   ),
                 ),
