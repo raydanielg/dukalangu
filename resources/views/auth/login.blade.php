@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Sign In')
-@section('meta_description', 'Sign in to Dukalangu - Tanzania\'s premier job portal. Access thousands of job opportunities and manage your career profile.')
-@section('meta_keywords', 'login Dukalangu, sign in, job portal login, Tanzania jobs login')
+@section('meta_description', 'Sign in to Salamapay - Tanzania\'s trusted payment and job platform. Access secure payments and job opportunities.')
+@section('meta_keywords', 'login Salamapay, sign in, payment portal login, secure payments Tanzania, job portal login')
 
 @section('content')
 <div class="auth-container">
@@ -12,31 +12,19 @@
             <div class="branding-content">
                 <div class="logo-section">
                     <div class="logo-circle">
-                        <!-- Dukalangu Logo - Modern and Powerful -->
-                        <svg viewBox="0 0 120 120" class="dukalangu-logo">
-                            <!-- Outer Circle -->
-                            <circle cx="60" cy="60" r="55" fill="none" stroke="currentColor" stroke-width="3"/>
-                            <!-- Inner Ring -->
-                            <circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
-                            <!-- Letter D -->
-                            <text x="60" y="45" text-anchor="middle" font-size="28" font-weight="800" fill="currentColor">D</text>
-                            <!-- Connecting Lines -->
-                            <path d="M60 52 L60 75" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                            <circle cx="60" cy="78" r="5" fill="currentColor"/>
-                            <!-- Bottom Text -->
-                            <text x="60" y="95" text-anchor="middle" font-size="7" font-weight="600" fill="currentColor" letter-spacing="2">DUKALANGU</text>
-                        </svg>
+                        <!-- Salamapay Logo White Version -->
+                        <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 100px; height: auto; filter: brightness(0) invert(1);">
                     </div>
                 </div>
-                <h1 class="portal-title">Dukalangu</h1>
-                <p class="portal-subtitle">TANZANIA'S PREMIER JOB PORTAL</p>
+                <h1 class="portal-title">Salamapay</h1>
+                <p class="portal-subtitle">SECURE PAYMENTS & CAREER OPPORTUNITIES</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Connect with top employers and unlock your career potential. Thousands of opportunities are waiting for you.
+                    Connect with top employers and process secure payments all in one platform. Your trusted partner for financial growth and career success.
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Dukalangu. All rights reserved.</p>
+                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
             </div>
         </div>
 
@@ -126,7 +114,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@dukalangu.com">support@dukalangu.com</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
                     </div>
                 </form>
             </div>
