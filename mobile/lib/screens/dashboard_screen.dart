@@ -11,6 +11,12 @@ import 'pos_screen.dart';
 import 'qr_screen.dart';
 import 'add_product_screen.dart';
 import 'barcode_scanner_screen.dart';
+import 'help_center_screen.dart';
+import 'contact_support_screen.dart';
+import 'about_screen.dart';
+import 'payment_methods_screen.dart';
+import 'delivery_options_screen.dart';
+import 'notifications_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -1071,7 +1077,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   _SettingsItem(
                     icon: Icons.notifications_outlined,
                     title: 'Notifications',
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+                    ),
                   ),
                   _SettingsItem(
                     icon: Icons.lock_outline,
@@ -1092,12 +1100,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   _SettingsItem(
                     icon: Icons.payments_outlined,
                     title: 'Payment Methods',
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const PaymentMethodsScreen()),
+                    ),
                   ),
                   _SettingsItem(
                     icon: Icons.local_shipping_outlined,
                     title: 'Delivery Options',
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const DeliveryOptionsScreen()),
+                    ),
                   ),
                 ],
               ),
@@ -1108,17 +1120,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   _SettingsItem(
                     icon: Icons.help_outline,
                     title: 'Help Center',
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const HelpCenterScreen()),
+                    ),
                   ),
                   _SettingsItem(
                     icon: Icons.chat_bubble_outline,
                     title: 'Contact Support',
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ContactSupportScreen()),
+                    ),
                   ),
                   _SettingsItem(
                     icon: Icons.info_outline,
                     title: 'About SalamaPay',
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const AboutScreen()),
+                    ),
                   ),
                 ],
               ),
