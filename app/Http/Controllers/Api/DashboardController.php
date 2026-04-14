@@ -140,6 +140,28 @@ class DashboardController extends Controller
     }
 
     /**
+     * Get store link
+     */
+    public function getStoreLink(Request $request)
+    {
+        $user = $request->user();
+
+        // Generate store URL based on user slug or ID
+        $storeSlug = $user->store_slug ?? 'store-' . $user->id;
+        $storeUrl = 'https://salamapay.co.tz/store/' . $storeSlug;
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'store_url' => $storeUrl,
+                'store_slug' => $storeSlug,
+                'qr_code' => 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' . urlencode($storeUrl),
+                'share_text' => 'Visit my store on SalamaPay: ' . $storeUrl,
+            ]
+        ]);
+    }
+
+    /**
      * Get sales chart data
      */
     public function getSalesChart(Request $request)
