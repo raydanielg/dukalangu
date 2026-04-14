@@ -4,7 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <!-- SEO Meta Tags - Power Packed for Dukalangu -->
+        <title>Dukalangu | Tanzania's Premier Job Portal - Find Your Dream Career Today</title>
+        <meta name="description" content="Dukalangu is Tanzania's leading job portal connecting talent with opportunities. Find jobs in Dar es Salaam, Arusha, Mwanza & all regions. Post vacancies free. Join 10,000+ job seekers today!">
+        <meta name="keywords" content="jobs Tanzania, ajira Tanzania, employment opportunities, job portal Tanzania, careers Dar es Salaam, kazi Tanzania,招聘 Tanzania, nafasi za kazi, Dukalangu jobs">
+        <meta name="author" content="Dukalangu Team">
+        <meta name="robots" content="index, follow">
+        <meta name="googlebot" content="index, follow">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:title" content="Dukalangu - Tanzania's Premier Job Portal">
+        <meta property="og:description" content="Connect with top employers and find your dream job in Tanzania. Thousands of opportunities in Dar es Salaam, Arusha, Mwanza & more!">
+        <meta property="og:image" content="{{ asset('images/dukalangu-og.jpg') }}">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url('/') }}">
+        <meta property="twitter:title" content="Dukalangu - Tanzania's Premier Job Portal">
+        <meta property="twitter:description" content="Connect with top employers and find your dream job in Tanzania.">
+        <meta property="twitter:image" content="{{ asset('images/dukalangu-og.jpg') }}">
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="{{ url('/') }}">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
