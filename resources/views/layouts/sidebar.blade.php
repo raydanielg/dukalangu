@@ -25,9 +25,9 @@
 
         <div class="nav-section">
             <span class="nav-label">My Store</span>
-            <a href="{{ route('store.builder') }}" class="nav-item {{ request()->routeIs('store.*') ? 'active' : '' }}">
+            <a href="{{ route('store.index') }}" class="nav-item {{ request()->routeIs('store.*') ? 'active' : '' }}">
                 <i data-lucide="store"></i>
-                <span>Create Store</span>
+                <span>My Stores</span>
                 <span class="badge-new">New</span>
             </a>
             <a href="{{ route('products.index') }}" class="nav-item {{ request()->routeIs('products.*') ? 'active' : '' }}">
