@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Create Account')
-@section('meta_description', 'Create your Dukalangu account today. Join Tanzania\'s premier job portal and unlock thousands of career opportunities.')
-@section('meta_keywords', 'register Dukalangu, create account, sign up, join job portal Tanzania')
+@section('meta_description', 'Create your Salamapay account today. Join Tanzania\'s trusted payment and job platform. Secure payments and career opportunities await.')
+@section('meta_keywords', 'register Salamapay, create account, sign up, payment account Tanzania, join job portal')
 
 @section('content')
 <div class="auth-container">
@@ -12,25 +12,18 @@
             <div class="branding-content">
                 <div class="logo-section">
                     <div class="logo-circle">
-                        <svg viewBox="0 0 120 120" class="dukalangu-logo">
-                            <circle cx="60" cy="60" r="55" fill="none" stroke="currentColor" stroke-width="3"/>
-                            <circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
-                            <text x="60" y="45" text-anchor="middle" font-size="28" font-weight="800" fill="currentColor">D</text>
-                            <path d="M60 52 L60 75" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                            <circle cx="60" cy="78" r="5" fill="currentColor"/>
-                            <text x="60" y="95" text-anchor="middle" font-size="7" font-weight="600" fill="currentColor" letter-spacing="2">DUKALANGU</text>
-                        </svg>
+                        <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 100px; height: auto; filter: brightness(0) invert(1);">
                     </div>
                 </div>
-                <h1 class="portal-title">Join Dukalangu</h1>
-                <p class="portal-subtitle">START YOUR CAREER JOURNEY TODAY</p>
+                <h1 class="portal-title">Join Salamapay</h1>
+                <p class="portal-subtitle">SECURE PAYMENTS & CAREER GROWTH</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Create an account to unlock thousands of job opportunities and connect with top employers across Tanzania.
+                    Create an account to access secure payment solutions and unlock thousands of job opportunities across Tanzania.
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Dukalangu. All rights reserved.</p>
+                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
             </div>
         </div>
 
@@ -123,7 +116,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@dukalangu.com">support@dukalangu.com</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
                     </div>
                 </form>
             </div>
