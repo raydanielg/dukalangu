@@ -21,7 +21,7 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'phone' => 'required|string|unique:users,phone|min:9|max:15',
-                'email' => 'nullable|string|email|max:255|unique:users,email',
+                'email' => 'nullable|string|email|max:255',
                 'password' => 'required|string|min:6|confirmed',
             ]);
 
@@ -33,11 +33,26 @@ class AuthController extends Controller
                 ], 422);
             }
 
+            // Generate unique placeholder email if not provided
+            $email = $request->email;
+            if (empty($email)) {
+                $email = $request->phone . '_' . time() . '@placeholder.com';
+            }
+
+            // Check if email already exists
+            if (User::where('email', $email)->exists()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Email already exists',
+                    'errors' => ['email' => ['This email is already registered']]
+                ], 422);
+            }
+
             // Create user with phone as login identifier
             $user = User::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
-                'email' => $request->email ?? $request->phone . '@placeholder.com',
+                'email' => $email,
                 'password' => Hash::make($request->password),
             ]);
 
