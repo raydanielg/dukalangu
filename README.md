@@ -1,9 +1,9 @@
 <p align="center">
-    <img src="public/Salama%20logo.png" alt="Salamapay Logo" width="200">
+    <img src="public/Salama%20logo.png" alt="Logo" width="200">
 </p>
 
 <p align="center">
-    <strong>Tanzania's Trusted Payment & Job Platform</strong>
+    <strong>Tanzania's Trusted E-Commerce & Business Platform</strong>
 </p>
 
 <p align="center">
@@ -14,24 +14,25 @@
 
 ---
 
-## About Salamapay
+## About {{ config('app.name') }}
 
-**Salamapay** is Tanzania's trusted platform combining secure mobile payment solutions with job opportunities. Built with Laravel, we provide a seamless experience for Tanzanians to manage their finances and career growth in one place.
+**{{ config('app.name') }}** is Tanzania's trusted e-commerce platform helping entrepreneurs create online stores, advertise products, and receive orders seamlessly. Built with Laravel, we provide a complete solution for Tanzanian businesses to sell online and grow their customer base.
 
 ### Key Features
 
-- **Secure Mobile Payments** - Process payments via M-Pesa, Tigo Pesa, HaloPesa, Airtel Money
-- **Job Search & Discovery** - Find opportunities by location, industry, and job type
-- **Employer Dashboard** - Post vacancies and manage applications
-- **Job Seeker Profiles** - Create professional profiles and upload CVs
-- **Payment History** - Track all your transactions in real-time
-- **Application Tracking** - Track your job applications in real-time
-- **Email Notifications** - Get notified about payments, jobs, and application updates
-- **Mobile Responsive** - Access Salamapay from any device
+- **Online Store Creation** - Create your custom store in minutes
+- **Product Management** - Add, edit, and manage your products easily
+- **Order Management** - Receive and process customer orders seamlessly
+- **Secure Payments** - Accept payments via M-Pesa, Tigo Pesa, HaloPesa, Airtel Money
+- **Business Dashboard** - Track sales, orders, and customer analytics
+- **Matangazo/Advertising** - Promote your products to reach more customers
+- **Customer Management** - Build and manage your customer relationships
+- **Mobile Responsive** - Access {{ config('app.name') }} from any device
+- **Email Notifications** - Get notified about orders, payments, and customer activities
 
 ### Coverage
 
-Salamapay serves all regions of Tanzania:
+{{ config('app.name') }} serves all regions of Tanzania:
 - Dar es Salaam
 - Arusha
 - Mwanza
@@ -49,7 +50,7 @@ Salamapay serves all regions of Tanzania:
 
 ## SEO Optimized
 
-Salamapay is built with powerful SEO features:
+{{ config('app.name') }} is built with powerful SEO features:
 - Meta tags for all pages
 - Open Graph tags for social sharing
 - Twitter Card integration
@@ -89,13 +90,13 @@ npm run dev
 Update your `.env` file:
 
 ```env
-APP_NAME=Salamapay
+APP_NAME=YourAppName
 APP_URL=http://localhost:8000
 
 # Database
 DB_CONNECTION=sqlite
 # or
-DB_DATABASE=salamapay
+DB_DATABASE=yourappname
 
 # Mail (for notifications)
 MAIL_MAILER=smtp
@@ -110,7 +111,7 @@ TIGOPESA_API_KEY=your_key
 
 ## Contributing
 
-We welcome contributions to make Salamapay better! Please follow these steps:
+We welcome contributions to make {{ config('app.name') }} better! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -122,20 +123,20 @@ We welcome contributions to make Salamapay better! Please follow these steps:
 
 Need help? Contact us:
 
-- **Email**: support@salamapay.co.tz
-- **Website**: https://salamapay.co.tz
+- **Email**: support@yourapp.co.tz
+- **Website**: https://yourapp.co.tz
 - **Phone**: +255 700 000 000
 
 ## License
 
-Salamapay is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+{{ config('app.name') }} is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ---
 
 <p align="center">
-    <strong>Secure Payments & Career Growth for Every Tanzanian</strong>
+    <strong>Empowering Tanzanian Entrepreneurs to Sell Online</strong>
 </p>
 
 <p align="center">
-    © 2026 Salamapay. All rights reserved.
+    © 2026 {{ config('app.name') }}. All rights reserved.
 </p>
