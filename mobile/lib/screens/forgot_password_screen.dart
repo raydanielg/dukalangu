@@ -535,27 +535,36 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     );
   }
 
+  void _navigateToLogin() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const AuthScreen()),
+    );
+  }
+
   Widget _buildBackToLogin() {
     return Center(
-      child: RichText(
-        textAlign: TextAlign.center,
-        text: TextSpan(
-          text: 'Remember your password? ',
-          style: GoogleFonts.nunito(
-            fontSize: 14,
-            color: AppTheme.textGray,
-            height: 1.5,
-          ),
-          children: [
-            TextSpan(
-              text: 'Sign in',
-              style: GoogleFonts.nunito(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: AppTheme.primaryGreen,
-              ),
+      child: GestureDetector(
+        onTap: _navigateToLogin,
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: 'Remember your password? ',
+            style: GoogleFonts.nunito(
+              fontSize: 14,
+              color: AppTheme.textGray,
+              height: 1.5,
             ),
-          ],
+            children: [
+              TextSpan(
+                text: 'Sign in',
+                style: GoogleFonts.nunito(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppTheme.primaryGreen,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

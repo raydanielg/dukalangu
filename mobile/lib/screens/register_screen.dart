@@ -852,27 +852,36 @@ class _RegisterScreenState extends State<RegisterScreen>
     );
   }
 
+  void _navigateToLogin() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const AuthScreen()),
+    );
+  }
+
   Widget _buildSignInLink() {
     return Center(
-      child: RichText(
-        textAlign: TextAlign.center,
-        text: TextSpan(
-          text: 'Already have an account? ',
-          style: GoogleFonts.nunito(
-            fontSize: 14,
-            color: AppTheme.textGray,
-            height: 1.5,
-          ),
-          children: [
-            TextSpan(
-              text: 'Sign in',
-              style: GoogleFonts.nunito(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: AppTheme.primaryGreen,
-              ),
+      child: GestureDetector(
+        onTap: _navigateToLogin,
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: 'Already have an account? ',
+            style: GoogleFonts.nunito(
+              fontSize: 14,
+              color: AppTheme.textGray,
+              height: 1.5,
             ),
-          ],
+            children: [
+              TextSpan(
+                text: 'Sign in',
+                style: GoogleFonts.nunito(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppTheme.primaryGreen,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
