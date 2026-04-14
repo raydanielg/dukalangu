@@ -23,6 +23,10 @@ class DashboardController extends Controller
                     'name' => $user->name,
                     'phone' => $user->phone,
                     'email' => $user->email,
+                    'avatar_url' => $user->avatar_url ?? null,
+                    'business_name' => $user->business_name ?? null,
+                    'location' => $user->location ?? null,
+                    'created_at' => $user->created_at?->format('M Y'),
                 ],
                 'stats' => $this->getUserStats($user),
                 'quick_actions' => [
