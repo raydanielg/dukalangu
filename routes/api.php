@@ -32,6 +32,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/dashboard/stats', [DashboardController::class, 'stats']);
     Route::get('/dashboard/recent-activity', [DashboardController::class, 'recentActivity']);
+    Route::get('/dashboard/chart', [DashboardController::class, 'getSalesChart']);
+    Route::get('/dashboard/visitors', [DashboardController::class, 'getVisitors']);
+    Route::get('/dashboard/all-stats', [DashboardController::class, 'getAllStats']);
+
+    // Store routes
+    Route::get('/store/link', [DashboardController::class, 'getStoreLink']);
 });
 
 // Health check

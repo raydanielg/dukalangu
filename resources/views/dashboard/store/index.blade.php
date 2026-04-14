@@ -4,15 +4,67 @@
 @section('page-title', 'My Stores')
 
 @section('content')
-<!-- Header Section -->
-<div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
-    <div>
-        <h4 class="mb-1">Your Online Stores</h4>
-        <p class="text-muted mb-0">Manage and preview your stores</p>
+<!-- Header Section with Prominent Add Button -->
+<div class="dashboard-card mb-4 animate__animated animate__fadeIn">
+    <div class="dashboard-card-body">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h3 class="mb-1">
+                    <i data-lucide="store" class="me-2 text-primary"></i>My Stores
+                </h3>
+                <p class="text-muted mb-0">Manage your online stores and share them with customers</p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <a href="{{ route('store.builder') }}" class="btn btn-primary btn-lg">
+                    <i data-lucide="plus-circle" class="me-2"></i>
+                    <strong>Create New Store</strong>
+                </a>
+            </div>
+        </div>
     </div>
-    <a href="{{ route('store.builder') }}" class="btn btn-primary">
-        <i data-lucide="plus-circle" class="me-2"></i>Add New Store
-    </a>
+</div>
+
+<!-- Quick Stats -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card-small bg-white p-3 rounded border">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon-small bg-primary bg-opacity-10 text-primary rounded p-2 me-3">
+                    <i data-lucide="store"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0">{{ $stores->count() }}</h5>
+                    <small class="text-muted">Total Stores</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card-small bg-white p-3 rounded border">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon-small bg-success bg-opacity-10 text-success rounded p-2 me-3">
+                    <i data-lucide="package"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0">{{ $stores->sum(function($s) { return $s->products->count(); }) }}</h5>
+                    <small class="text-muted">Total Products</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card-small bg-white p-3 rounded border">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon-small bg-info bg-opacity-10 text-info rounded p-2 me-3">
+                    <i data-lucide="shopping-bag"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0">{{ $stores->sum(function($s) { return $s->orders->count(); }) }}</h5>
+                    <small class="text-muted">Total Orders</small>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @if($stores->count() > 0)

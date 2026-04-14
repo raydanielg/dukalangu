@@ -140,6 +140,107 @@ class DashboardController extends Controller
     }
 
     /**
+     * Get sales chart data
+     */
+    public function getSalesChart(Request $request)
+    {
+        $period = $request->get('period', 'week');
+        $user = $request->user();
+
+        // Generate sample chart data based on period
+        $data = $this->generateChartData($period);
+
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
+
+    /**
+     * Get visitor statistics
+     */
+    public function getVisitors(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'today_visitors' => 156,
+                'week_visitors' => 1234,
+                'month_visitors' => 5678,
+                'total_visitors' => 45231,
+                'online_now' => 12,
+                'bounce_rate' => '35%',
+            ]
+        ]);
+    }
+
+    /**
+     * Get all stats combined
+     */
+    public function getAllStats(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'sales' => [
+                    'today' => 145000,
+                    'week' => 890000,
+                    'month' => 2450000,
+                    'change' => '+12%',
+                ],
+                'orders' => [
+                    'today' => 8,
+                    'week' => 56,
+                    'month' => 156,
+                    'pending' => 12,
+                ],
+                'products' => 42,
+                'customers' => 89,
+                'visitors' => [
+                    'today' => 156,
+                    'online' => 12,
+                ],
+                'chart' => $this->generateChartData('week'),
+            ]
+        ]);
+    }
+
+    /**
+     * Generate chart data
+     */
+    private function generateChartData($period)
+    {
+        $labels = [];
+        $sales = [];
+        $visitors = [];
+
+        if ($period === 'week') {
+            $labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            $sales = [45000, 52000, 48000, 61000, 55000, 72000, 68000];
+            $visitors = [45, 52, 48, 61, 55, 72, 68];
+        } elseif ($period === 'month') {
+            $labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+            $sales = [520000, 610000, 580000, 740000];
+            $visitors = [520, 610, 580, 740];
+        } else {
+            $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+            $sales = [1800000, 2100000, 1950000, 2450000, 2200000, 2600000];
+            $visitors = [1800, 2100, 1950, 2450, 2200, 2600];
+        }
+
+        return [
+            'labels' => $labels,
+            'sales' => $sales,
+            'visitors' => $visitors,
+            'period' => $period,
+        ];
+    }
+
+    /**
      * Helper: Get user stats
      */
     private function getUserStats($user)
