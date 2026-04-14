@@ -358,19 +358,19 @@
                 <i class="bi bi-chevron-down ms-auto" style="font-size: 12px;"></i>
             </a>
             <div id="products-submenu" class="submenu">
-                <a href="#" class="submenu-item">All Products</a>
-                <a href="#" class="submenu-item">In Stock</a>
-                <a href="#" class="submenu-item">Out of Stock</a>
-                <a href="#" class="submenu-item">Add Product</a>
+                <a href="{{ route('products.index') }}" class="submenu-item {{ request()->routeIs('products.index') ? 'active' : '' }}">All Products</a>
+                <a href="{{ route('products.in-stock') }}" class="submenu-item {{ request()->routeIs('products.in-stock') ? 'active' : '' }}">In Stock</a>
+                <a href="{{ route('products.out-of-stock') }}" class="submenu-item {{ request()->routeIs('products.out-of-stock') ? 'active' : '' }}">Out of Stock</a>
+                <a href="{{ route('products.create') }}" class="submenu-item {{ request()->routeIs('products.create') ? 'active' : '' }}">Add Product</a>
             </div>
 
             <p class="menu-category">Sales</p>
-            <a href="#" class="menu-item">
+            <a href="{{ route('pos') }}" class="menu-item {{ request()->routeIs('pos') ? 'active' : '' }}">
                 <i class="bi bi-cart-fill"></i>
                 <span>POS</span>
                 <span class="menu-badge">New</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="{{ route('orders') }}" class="menu-item {{ request()->routeIs('orders') ? 'active' : '' }}">
                 <i class="bi bi-receipt"></i>
                 <span>Orders</span>
             </a>
