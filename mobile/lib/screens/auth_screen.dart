@@ -392,12 +392,12 @@ class _AuthScreenState extends State<AuthScreen>
     );
   }
 
-  Widget _buildEmailField() {
+  Widget _buildPhoneField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Email Address',
+          'Phone Number *',
           style: GoogleFonts.nunito(
             fontSize: 13,
             fontWeight: FontWeight.w600,
@@ -406,25 +406,35 @@ class _AuthScreenState extends State<AuthScreen>
         ),
         const SizedBox(height: 8),
         TextFormField(
-          controller: _emailController,
-          keyboardType: TextInputType.emailAddress,
+          controller: _phoneController,
+          keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.next,
           style: GoogleFonts.nunito(
             fontSize: 15,
             color: AppTheme.textDark,
           ),
           decoration: InputDecoration(
-            hintText: 'Enter your email',
+            hintText: '712345678',
             hintStyle: GoogleFonts.nunito(
               fontSize: 14,
               color: AppTheme.textLight,
             ),
             prefixIcon: Container(
               margin: const EdgeInsets.all(12),
-              child: const Icon(
-                Icons.email_outlined,
-                color: AppTheme.primaryGreen,
-                size: 20,
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '🇹🇿 +255',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  SizedBox(width: 8),
+                  Icon(
+                    Icons.phone_outlined,
+                    color: AppTheme.primaryGreen,
+                    size: 20,
+                  ),
+                ],
               ),
             ),
             filled: true,
@@ -451,10 +461,10 @@ class _AuthScreenState extends State<AuthScreen>
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your email';
+              return 'Please enter your phone number';
             }
-            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-              return 'Please enter a valid email';
+            if (value.length < 9) {
+              return 'Phone number must be at least 9 digits';
             }
             return null;
           },
