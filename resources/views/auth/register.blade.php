@@ -31,7 +31,7 @@
             <div class="form-container">
                 <div class="form-header">
                     <h2 class="welcome-title">Create Account</h2>
-                    <p class="welcome-subtitle">Join thousands of entrepreneurs and sellers</p>
+                    <p class="welcome-subtitle">Start your online business journey today</p>
                 </div>
                 <form method="POST" action="{{ route('register') }}" class="login-form">
                     @csrf
@@ -127,7 +127,7 @@
 
                     <!-- Sign In Link -->
                     <div class="create-account">
-                        <p>Already have an account? <a href="{{ route('login') }}" style="color: var(--primary-green); font-weight: 700;">Sign in here</a></p>
+                        <p>Already have an account? <a href="{{ route('login') }}" style="color: var(--primary-green); font-weight: 700;">Sign in to your account</a></p>
                     </div>
 
                     <!-- Help Section -->
