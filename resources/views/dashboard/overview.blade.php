@@ -660,24 +660,26 @@ const distChart = new Chart(distCtx, {
     }
 });
 
-// Add Custom Legend for Distribution
+// Add Custom Legend for Distribution - Only if container exists
 const legendContainer = document.getElementById('distributionLegend');
+if (legendContainer) {
 const colors = ['#10b981', '#f59e0b', '#ef4444'];
-const totalOrders = distData.reduce((a, b) => a + b, 0);
+const totalOrders = safeDistData.reduce((a, b) => a + b, 0);
 
 let legendHTML = '<div class="d-flex justify-content-center gap-3 flex-wrap">';
-distLabels.forEach((label, index) => {
-    const count = distData[index];
+safeDistLabels.forEach((label, index) => {
+    const count = safeDistData[index] || 0;
     const percentage = totalOrders > 0 ? Math.round((count / totalOrders) * 100) : 0;
     legendHTML += `
         <div class="d-flex align-items-center gap-2">
-            <span style="width: 12px; height: 12px; border-radius: 50%; background: ${colors[index]};"></span>
+            <span style="width: 12px; height: 12px; border-radius: 50%; background: ${colors[index] || '#ccc'};"></span>
             <span class="small text-muted">${label}: <strong>${count}</strong> (${percentage}%)</span>
         </div>
     `;
 });
 legendHTML += '</div>';
 legendContainer.innerHTML = legendHTML;
+}
 } // End if distCanvas exists
 </script>
 @endsection
