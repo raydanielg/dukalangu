@@ -12,12 +12,14 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'store_id',
         'category_id',
         'name',
         'slug',
         'description',
         'sku',
+        'barcode',
         'price',
         'cost_price',
         'stock_quantity',
@@ -36,6 +38,11 @@ class Product extends Model
         'is_active' => 'boolean',
         'is_featured' => 'boolean'
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function store(): BelongsTo
     {
