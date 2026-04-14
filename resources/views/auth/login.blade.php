@@ -37,12 +37,18 @@
                     </button>
                 </div>
 
-                <div class="form-header">
-                    <h2 class="welcome-title">Welcome back</h2>
-                    <p class="welcome-subtitle">Sign in to your account</p>
+                <!-- Auth Tabs - Login | Register -->
+                <div class="auth-tabs" style="display: flex; margin-bottom: 24px; border-bottom: 2px solid var(--border-color);">
+                    <button type="button" class="auth-tab active" onclick="showTab('login')" id="tab-login" style="flex: 1; padding: 12px; background: none; border: none; border-bottom: 2px solid var(--primary-green); color: var(--primary-green); font-weight: 600; cursor: pointer;">
+                        Sign In
+                    </button>
+                    <button type="button" class="auth-tab" onclick="showTab('register')" id="tab-register" style="flex: 1; padding: 12px; background: none; border: none; border-bottom: 2px solid transparent; color: var(--text-gray); font-weight: 600; cursor: pointer;">
+                        Create Account
+                    </button>
                 </div>
 
-                <form method="POST" action="{{ route('login') }}" class="login-form">
+                <!-- Login Form -->
+                <form method="POST" action="{{ route('login') }}" class="login-form" id="login-form">
                     @csrf
 
                     <!-- Phone Number Field -->
