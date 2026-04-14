@@ -22,10 +22,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String? _userPhone;
   String? _avatarUrl;
 
+  int _selectedIndex = 0;
+
+  final List<_NavItem> _navItems = [
+    _NavItem(icon: Icons.home_rounded, label: 'Home'),
+    _NavItem(icon: Icons.store_rounded, label: 'Store'),
+    _NavItem(icon: Icons.point_of_sale_rounded, label: 'POS'),
+    _NavItem(icon: Icons.receipt_long_rounded, label: 'Orders'),
+    _NavItem(icon: Icons.settings_rounded, label: 'Settings'),
+  ];
+
   @override
   void initState() {
     super.initState();
     _loadDashboardData();
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   Future<void> _loadDashboardData() async {
@@ -90,31 +106,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
                 )
-              : RefreshIndicator(
-                  onRefresh: _loadDashboardData,
-                  color: AppTheme.primaryGreen,
-                  backgroundColor: Colors.white,
-                  child: SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildHeader(),
-                          const SizedBox(height: 24),
-                          _buildStatsCards(),
-                          const SizedBox(height: 24),
-                          _buildQuickActions(),
-                          const SizedBox(height: 24),
-                          _buildRecentActivity(),
-                        ],
+              : IndexedStack(
+                  index: _selectedIndex,
+                  children: [
+                    // Home Tab
+                    RefreshIndicator(
+                      onRefresh: _loadDashboardData,
+                      color: AppTheme.primaryGreen,
+                      backgroundColor: Colors.white,
+                      child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildHeader(),
+                              const SizedBox(height: 24),
+                              _buildStatsCards(),
+                              const SizedBox(height: 24),
+                              _buildQuickActions(),
+                              const SizedBox(height: 24),
+                              _buildRecentActivity(),
+                              const SizedBox(height: 80), // Space for bottom nav
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    // Store Tab
+                    _buildComingSoonTab('Store', Icons.store_rounded),
+                    // POS Tab
+                    _buildComingSoonTab('POS', Icons.point_of_sale_rounded),
+                    // Orders Tab
+                    _buildComingSoonTab('Orders', Icons.receipt_long_rounded),
+                    // Settings Tab
+                    _buildSettingsTab(),
+                  ],
                 ),
         ),
       ),
+      bottomNavigationBar: _buildBottomNav(),
     );
   }
 
