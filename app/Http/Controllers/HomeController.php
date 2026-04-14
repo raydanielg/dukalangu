@@ -53,7 +53,7 @@ class HomeController extends Controller
 
         $recentLogins = collect([
             (object)[
-                'user_name' => Auth::user()->name ?? 'Admin',
+                'user_name' => auth()->user()->name ?? 'Admin',
                 'ip_address' => '127.0.0.1',
                 'created_at' => now()
             ]
