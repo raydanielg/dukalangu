@@ -543,7 +543,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _buildStatsIndicators() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(4, (index) {
+      children: List.generate(2, (index) { // 2 pages (4 cards / 2 per page)
         final isActive = _currentStatsPage == index;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
