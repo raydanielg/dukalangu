@@ -611,18 +611,22 @@ const activityChart = new Chart(activityCtx, {
 });
 } // End if activityCanvas exists
 
-// Real Distribution Data
-const distLabels = @json($distributionData['labels']);
-const distData = @json($distributionData['data']);
+// Real Distribution Data with Fallbacks
+const distLabels = @json($distributionData['labels'] ?? ['No Data']);
+const distData = @json($distributionData['data'] ?? [0]);
+const safeDistLabels = distLabels.length > 0 ? distLabels : ['No Data'];
+const safeDistData = distData.length > 0 ? distData : [0];
 
-// Distribution Doughnut Chart with Real Data
-const distCtx = document.getElementById('distributionChart').getContext('2d');
+// Distribution Doughnut Chart with Real Data - Only initialize if canvas exists
+const distCanvas = document.getElementById('distributionChart');
+if (distCanvas) {
+const distCtx = distCanvas.getContext('2d');
 const distChart = new Chart(distCtx, {
     type: 'doughnut',
     data: {
-        labels: distLabels,
+        labels: safeDistLabels,
         datasets: [{
-            data: distData,
+            data: safeDistData,
             backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
             borderWidth: 0,
             hoverOffset: 4
@@ -674,5 +678,6 @@ distLabels.forEach((label, index) => {
 });
 legendHTML += '</div>';
 legendContainer.innerHTML = legendHTML;
+} // End if distCanvas exists
 </script>
 @endsection
