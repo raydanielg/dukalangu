@@ -128,10 +128,104 @@
                         Sign In
                     </button>
 
-                    <!-- Create Account -->
-                    <div class="create-account">
-                        <p>Don't have an account? <a href="{{ route('register') }}" style="color: var(--primary-green); font-weight: 700;">Create an account here</a></p>
+                    <!-- Help Section -->
+                    <div class="help-section">
+                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
                     </div>
+                </form>
+
+                <!-- Register Form (Hidden by default) -->
+                <form method="POST" action="{{ route('register') }}" class="login-form" id="register-form" style="display: none;">
+                    @csrf
+
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </span>
+                            <input id="reg-name" type="text" class="form-input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Full Name*">
+                        </div>
+                        @error('name')
+                            <span class="error-message" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <!-- Phone Number Field (Required) -->
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </span>
+                            <input id="reg-phone" type="tel" class="form-input @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="tel" placeholder="Phone Number* (e.g., 0712345678)" pattern="[0-9]{10}" title="Enter 10 digit phone number">
+                        </div>
+                        @error('phone')
+                            <span class="error-message" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <!-- Email Field (Optional) -->
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                                </svg>
+                            </span>
+                            <input id="reg-email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email Address (Optional)">
+                        </div>
+                        @error('email')
+                            <span class="error-message" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                            </span>
+                            <input id="reg-password" type="password" class="form-input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password*">
+                        </div>
+                        @error('password')
+                            <span class="error-message" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                            </span>
+                            <input id="reg-password-confirm" type="password" class="form-input" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password*">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-signin">
+                        Create Account
+                    </button>
 
                     <!-- Help Section -->
                     <div class="help-section">
@@ -159,5 +253,34 @@ function togglePassword() {
         eyeOffIcon.style.display = 'none';
     }
 }
+
+// Tab switching function
+function showTab(tab) {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const loginTab = document.getElementById('tab-login');
+    const registerTab = document.getElementById('tab-register');
+
+    if (tab === 'login') {
+        loginForm.style.display = 'flex';
+        registerForm.style.display = 'none';
+        loginTab.style.borderBottomColor = 'var(--primary-green)';
+        loginTab.style.color = 'var(--primary-green)';
+        registerTab.style.borderBottomColor = 'transparent';
+        registerTab.style.color = 'var(--text-gray)';
+    } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'flex';
+        registerTab.style.borderBottomColor = 'var(--primary-green)';
+        registerTab.style.color = 'var(--primary-green)';
+        loginTab.style.borderBottomColor = 'transparent';
+        loginTab.style.color = 'var(--text-gray)';
+    }
+}
+
+// Show register form if there are register errors
+@if ($errors->has('name') || $errors->has('phone') || $errors->has('email') || $errors->has('password'))
+    showTab('register');
+@endif
 </script>
 @endsection
