@@ -601,12 +601,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
               _buildActionButton(
                 icon: Icons.add_circle_outline,
                 label: 'Add Product',
-                onTap: () {},
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const AddProductScreen()),
+                ),
               ),
               _buildActionButton(
                 icon: Icons.qr_code_scanner,
                 label: 'Scan QR',
-                onTap: () {},
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const BarcodeScannerScreen()),
+                ),
               ),
               _buildActionButton(
                 icon: Icons.analytics_outlined,

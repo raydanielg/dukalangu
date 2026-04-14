@@ -465,6 +465,34 @@ class ApiService {
     }
   }
 
+  // Get product by ID or barcode
+  Future<Map<String, dynamic>> getProduct(String productId) async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/store/products/$productId'),
+        headers: headers,
+      );
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Failed to get product: $e'};
+    }
+  }
+
+  // Search products
+  Future<Map<String, dynamic>> searchProducts(String query) async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/store/products?search=$query'),
+        headers: headers,
+      );
+      return jsonDecode(response.body);
+    } catch (e) {
+      return {'success': false, 'message': 'Search failed: $e'};
+    }
+  }
+
   // Check if user is logged in
   Future<bool> isLoggedIn() async {
     final token = await getToken();
