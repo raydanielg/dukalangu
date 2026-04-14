@@ -10,18 +10,13 @@
         <!-- Left Side - Branding -->
         <div class="auth-branding">
             <div class="branding-content">
-                <!-- App Preview Image with Float Animation -->
-                <div class="app-preview-section" style="margin-bottom: 24px; text-align: center;">
-                    <img src="{{ asset('app.png') }}" alt="{{ config('app.name') }} App" class="app-image" style="width: 220px; height: auto; animation: floatAnimation 3s ease-in-out infinite, fadeInUp 1s ease-out; filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));">
+                <!-- Logo -->
+                <div class="logo-section" style="animation: fadeIn 1s ease-out;">
+                    <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}" class="salamapay-logo" style="width: 120px; height: auto; margin-bottom: 16px;">
                 </div>
 
                 <!-- Decorative Line -->
-                <div class="decorative-line" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--primary-green-light), var(--primary-green), var(--primary-green-dark)); margin: 0 auto 20px; border-radius: 2px; animation: expandLine 1.5s ease-out;"></div>
-
-                <!-- Logo -->
-                <div class="logo-section" style="animation: fadeIn 1.5s ease-out;">
-                    <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}" class="salamapay-logo" style="width: 100px; height: auto; margin-bottom: 12px;">
-                </div>
+                <div class="decorative-line" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--primary-green-light), var(--primary-green), var(--primary-green-dark)); margin: 0 auto 20px; border-radius: 2px; animation: expandLine 1s ease-out;"></div>
 
                 <!-- Title with Animation -->
                 <h1 class="portal-title" style="animation: slideInLeft 1s ease-out;">{{ config('app.name') }}</h1>
