@@ -27,9 +27,10 @@
         }
 
         body {
-            font-family: 'Nunito', sans-serif;
-            background: #f1f5f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8fafc;
             min-height: 100vh;
+            color: #334155;
         }
 
         /* Sidebar Styles */
