@@ -24,53 +24,56 @@
         </div>
 
         <div class="nav-section">
-            <span class="nav-label">Accounting</span>
-            <a href="{{ route('orders') }}" class="nav-item {{ request()->routeIs('orders') ? 'active' : '' }}">
-                <i data-lucide="receipt"></i>
-                <span>Vouchers</span>
+            <span class="nav-label">My Store</span>
+            <a href="{{ route('store.builder') }}" class="nav-item {{ request()->routeIs('store.*') ? 'active' : '' }}">
+                <i data-lucide="store"></i>
+                <span>Create Store</span>
+                <span class="badge-new">New</span>
             </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="wallet"></i>
-                <span>Accounts</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="landmark"></i>
-                <span>Banks</span>
-            </a>
-        </div>
-
-        <div class="nav-section">
-            <span class="nav-label">Business</span>
             <a href="{{ route('products.index') }}" class="nav-item {{ request()->routeIs('products.*') ? 'active' : '' }}">
                 <i data-lucide="package"></i>
-                <span>Products</span>
+                <span>My Products</span>
+            </a>
+            <a href="{{ route('orders') }}" class="nav-item {{ request()->routeIs('orders') ? 'active' : '' }}">
+                <i data-lucide="receipt"></i>
+                <span>Orders</span>
             </a>
             <a href="{{ route('pos') }}" class="nav-item {{ request()->routeIs('pos') ? 'active' : '' }}">
                 <i data-lucide="shopping-cart"></i>
-                <span>POS</span>
-                <span class="badge-new">New</span>
+                <span>Quick Sell</span>
             </a>
             <a href="#" class="nav-item">
                 <i data-lucide="users"></i>
                 <span>Customers</span>
             </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="bar-chart-3"></i>
-                <span>Analytics</span>
+        </div>
+
+        <div class="nav-section">
+            <span class="nav-label">Inventory</span>
+            <a href="{{ route('products.in-stock') }}" class="nav-item">
+                <i data-lucide="check-circle-2"></i>
+                <span>In Stock</span>
+            </a>
+            <a href="{{ route('products.out-of-stock') }}" class="nav-item">
+                <i data-lucide="alert-circle"></i>
+                <span>Out of Stock</span>
+            </a>
+            <a href="{{ route('categories.index') }}" class="nav-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                <i data-lucide="folder-tree"></i>
+                <span>Categories</span>
             </a>
         </div>
 
         <div class="nav-section">
-            <span class="nav-label">System</span>
-            <a href="#" class="nav-item has-submenu" onclick="toggleSubmenu('inventory-submenu'); return false;">
-                <i data-lucide="archive"></i>
-                <span>Inventory</span>
-                <i data-lucide="chevron-down" class="ms-auto submenu-icon"></i>
+            <span class="nav-label">Profile</span>
+            <a href="{{ route('profile.edit') }}" class="nav-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                <i data-lucide="user"></i>
+                <span>My Profile</span>
             </a>
-            <div id="inventory-submenu" class="submenu">
-                <a href="{{ route('products.in-stock') }}" class="submenu-item">In Stock</a>
-                <a href="{{ route('products.out-of-stock') }}" class="submenu-item">Out of Stock</a>
-            </div>
+            <a href="{{ route('profile.store') }}" class="nav-item {{ request()->routeIs('profile.store') ? 'active' : '' }}">
+                <i data-lucide="store"></i>
+                <span>Store Settings</span>
+            </a>
             <a href="#" class="nav-item">
                 <i data-lucide="settings"></i>
                 <span>Settings</span>
