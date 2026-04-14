@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- SEO Meta Tags - Power Packed for Salamapay -->
-        <title>Salamapay | Tanzania's Trusted Payment & Job Platform - Secure, Fast & Reliable</title>
-        <meta name="description" content="Salamapay is Tanzania's trusted platform for secure mobile payments and job opportunities. Process payments, find jobs in Dar es Salaam, Arusha, Mwanza & all regions. Join thousands of Tanzanians today!">
-        <meta name="keywords" content="Salamapay, mobile payments Tanzania, secure payments, job portal Tanzania, fintech Tanzania, ajira, employment opportunities, mpesa, tigopesa, halopesa, nafasi za kazi">
-        <meta name="author" content="Salamapay Team">
+        <!-- SEO Meta Tags - Power Packed -->
+        <title>{{ config('app.name') }} | Tanzania's Trusted E-Commerce Platform - Sell & Grow Your Business</title>
+        <meta name="description" content="{{ config('app.name') }} helps Tanzanian entrepreneurs create online stores, advertise products, and receive orders seamlessly. Start selling in Dar es Salaam, Arusha, Mwanza & all regions today!">
+        <meta name="keywords" content="{{ config('app.name') }}, Tanzania e-commerce, online store, sell products, biashara mtandaoni, wafanyabiashara, matangazo, dukani mtandaoni, online seller Tanzania">
+        <meta name="author" content="{{ config('app.name') }} Team">
         <meta name="robots" content="index, follow">
         <meta name="googlebot" content="index, follow">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url('/') }}">
-        <meta property="og:title" content="Salamapay - Tanzania's Trusted Payment & Job Platform">
-        <meta property="og:description" content="Secure payments and job opportunities in one platform. Join thousands of Tanzanians trusting Salamapay for their career and financial needs!">
+        <meta property="og:title" content="{{ config('app.name') }} - Tanzania's Trusted E-Commerce Platform">
+        <meta property="og:description" content="Create your online store, advertise products, and receive orders seamlessly. Join thousands of Tanzanian entrepreneurs!">
         <meta property="og:image" content="{{ asset('Salama logo.png') }}">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url('/') }}">
-        <meta property="twitter:title" content="Salamapay - Tanzania's Trusted Payment & Job Platform">
-        <meta property="twitter:description" content="Secure payments and job opportunities in one trusted platform.">
+        <meta property="twitter:title" content="{{ config('app.name') }} - Tanzania's Trusted E-Commerce Platform">
+        <meta property="twitter:description" content="Create your online store and sell products seamlessly.">
         <meta property="twitter:image" content="{{ asset('Salama logo.png') }}">
 
         <!-- Canonical URL -->

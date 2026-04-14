@@ -46,8 +46,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url('/') }}">
-                    <img src="{{ asset('Salama logo.png') }}" alt="Salamapay Logo" height="35" class="me-2">
-                    <span style="color: #2563eb;">Salama</span><span style="color: #1e40af;">pay</span>
+                    <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }} Logo" height="35" class="me-2">
+                    <span>{{ config('app.name') }}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

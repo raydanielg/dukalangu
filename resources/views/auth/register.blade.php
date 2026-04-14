@@ -32,7 +32,7 @@
             <div class="form-container">
                 <div class="form-header">
                     <h2 class="welcome-title">Create Account</h2>
-                    <p class="welcome-subtitle">Join thousands of job seekers and employers</p>
+                    <p class="welcome-subtitle">Join thousands of entrepreneurs and sellers</p>
                 </div>
                 <form method="POST" action="{{ route('register') }}" class="login-form">
                     @csrf
