@@ -4,27 +4,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- SEO Meta Tags - Power Packed for Dukalangu -->
-        <title>Dukalangu | Tanzania's Premier Job Portal - Find Your Dream Career Today</title>
-        <meta name="description" content="Dukalangu is Tanzania's leading job portal connecting talent with opportunities. Find jobs in Dar es Salaam, Arusha, Mwanza & all regions. Post vacancies free. Join 10,000+ job seekers today!">
-        <meta name="keywords" content="jobs Tanzania, ajira Tanzania, employment opportunities, job portal Tanzania, careers Dar es Salaam, kazi Tanzania,招聘 Tanzania, nafasi za kazi, Dukalangu jobs">
-        <meta name="author" content="Dukalangu Team">
+        <!-- SEO Meta Tags - Power Packed for Salamapay -->
+        <title>Salamapay | Tanzania's Trusted Payment & Job Platform - Secure, Fast & Reliable</title>
+        <meta name="description" content="Salamapay is Tanzania's trusted platform for secure mobile payments and job opportunities. Process payments, find jobs in Dar es Salaam, Arusha, Mwanza & all regions. Join thousands of Tanzanians today!">
+        <meta name="keywords" content="Salamapay, mobile payments Tanzania, secure payments, job portal Tanzania, fintech Tanzania, ajira, employment opportunities, mpesa, tigopesa, halopesa, nafasi za kazi">
+        <meta name="author" content="Salamapay Team">
         <meta name="robots" content="index, follow">
         <meta name="googlebot" content="index, follow">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url('/') }}">
-        <meta property="og:title" content="Dukalangu - Tanzania's Premier Job Portal">
-        <meta property="og:description" content="Connect with top employers and find your dream job in Tanzania. Thousands of opportunities in Dar es Salaam, Arusha, Mwanza & more!">
-        <meta property="og:image" content="{{ asset('images/dukalangu-og.jpg') }}">
+        <meta property="og:title" content="Salamapay - Tanzania's Trusted Payment & Job Platform">
+        <meta property="og:description" content="Secure payments and job opportunities in one platform. Join thousands of Tanzanians trusting Salamapay for their career and financial needs!">
+        <meta property="og:image" content="{{ asset('Salama logo.png') }}">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url('/') }}">
-        <meta property="twitter:title" content="Dukalangu - Tanzania's Premier Job Portal">
-        <meta property="twitter:description" content="Connect with top employers and find your dream job in Tanzania.">
-        <meta property="twitter:image" content="{{ asset('images/dukalangu-og.jpg') }}">
+        <meta property="twitter:title" content="Salamapay - Tanzania's Trusted Payment & Job Platform">
+        <meta property="twitter:description" content="Secure payments and job opportunities in one trusted platform.">
+        <meta property="twitter:image" content="{{ asset('Salama logo.png') }}">
 
         <!-- Canonical URL -->
         <link rel="canonical" href="{{ url('/') }}">

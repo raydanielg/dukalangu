@@ -1,7 +1,9 @@
-<p align="center"><h1 align="center" style="color: #2563eb;">Duka<span style="color: #1e40af;">langu</span></h1></p>
+<p align="center">
+    <img src="public/Salama%20logo.png" alt="Salamapay Logo" width="200">
+</p>
 
 <p align="center">
-    <strong>Tanzania's Premier Job Portal</strong>
+    <strong>Tanzania's Trusted Payment & Job Platform</strong>
 </p>
 
 <p align="center">
@@ -12,22 +14,24 @@
 
 ---
 
-## About Dukalangu
+## About Salamapay
 
-**Dukalangu** is Tanzania's leading job portal platform, built with Laravel to connect job seekers with employers across the country. Our platform bridges the gap between talent and opportunity, making job searching and recruitment seamless and efficient.
+**Salamapay** is Tanzania's trusted platform combining secure mobile payment solutions with job opportunities. Built with Laravel, we provide a seamless experience for Tanzanians to manage their finances and career growth in one place.
 
 ### Key Features
 
+- **Secure Mobile Payments** - Process payments via M-Pesa, Tigo Pesa, HaloPesa, Airtel Money
 - **Job Search & Discovery** - Find opportunities by location, industry, and job type
 - **Employer Dashboard** - Post vacancies and manage applications
 - **Job Seeker Profiles** - Create professional profiles and upload CVs
+- **Payment History** - Track all your transactions in real-time
 - **Application Tracking** - Track your job applications in real-time
-- **Email Notifications** - Get notified about new opportunities and application updates
-- **Mobile Responsive** - Access Dukalangu from any device
+- **Email Notifications** - Get notified about payments, jobs, and application updates
+- **Mobile Responsive** - Access Salamapay from any device
 
 ### Coverage
 
-Dukalangu serves all regions of Tanzania:
+Salamapay serves all regions of Tanzania:
 - Dar es Salaam
 - Arusha
 - Mwanza
@@ -45,13 +49,13 @@ Dukalangu serves all regions of Tanzania:
 
 ## SEO Optimized
 
-Dukalangu is built with powerful SEO features:
+Salamapay is built with powerful SEO features:
 - Meta tags for all pages
 - Open Graph tags for social sharing
 - Twitter Card integration
 - Canonical URLs
 - Structured data ready
-- Keywords optimized for Tanzania job market
+- Keywords optimized for Tanzania fintech and job market
 
 ## Installation
 
@@ -85,18 +89,23 @@ npm run dev
 Update your `.env` file:
 
 ```env
-APP_NAME=Dukalangu
+APP_NAME=Salamapay
 APP_URL=http://localhost:8000
 
 # Database
 DB_CONNECTION=sqlite
 # or
-DB_DATABASE=dukalangu
+DB_DATABASE=salamapay
 
 # Mail (for notifications)
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
 MAIL_PORT=2525
+
+# Payment APIs
+MPESA_CONSUMER_KEY=your_key
+MPESA_CONSUMER_SECRET=your_secret
+TIGOPESA_API_KEY=your_key
 ```
 
 ## Contributing
@@ -113,8 +122,9 @@ We welcome contributions to make Dukalangu better! Please follow these steps:
 
 Need help? Contact us:
 
-- **Email**: support@dukalangu.com
-- **Website**: https://dukalangu.com
+- **Email**: support@salamapay.co.tz
+- **Website**: https://salamapay.co.tz
+- **Phone**: +255 700 000 000
 
 ## License
 
@@ -123,9 +133,9 @@ Dukalangu is open-sourced software licensed under the [MIT license](https://open
 ---
 
 <p align="center">
-    <strong>Connecting Talent with Opportunity in Tanzania</strong>
+    <strong>Secure Payments & Career Growth for Every Tanzanian</strong>
 </p>
 
 <p align="center">
-    © 2026 Dukalangu. All rights reserved.
+    © 2026 Salamapay. All rights reserved.
 </p>
