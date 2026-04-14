@@ -695,25 +695,28 @@ class _AuthScreenState extends State<AuthScreen>
 
   Widget _buildCreateAccount() {
     return Center(
-      child: RichText(
-        textAlign: TextAlign.center,
-        text: TextSpan(
-          text: "Don't have an account?\n",
-          style: GoogleFonts.nunito(
-            fontSize: 14,
-            color: AppTheme.textGray,
-            height: 1.5,
-          ),
-          children: [
-            TextSpan(
-              text: 'Create an account',
-              style: GoogleFonts.nunito(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: AppTheme.primaryGreen,
-              ),
+      child: GestureDetector(
+        onTap: _navigateToRegister,
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: "Don't have an account? ",
+            style: GoogleFonts.nunito(
+              fontSize: 14,
+              color: AppTheme.textGray,
+              height: 1.5,
             ),
-          ],
+            children: [
+              TextSpan(
+                text: 'Create an account here',
+                style: GoogleFonts.nunito(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppTheme.primaryGreen,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

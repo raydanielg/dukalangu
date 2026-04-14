@@ -65,12 +65,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse($recentOrders as $order)
                             <tr>
-                                <td colspan="5" class="text-center text-muted py-4">
-                                    <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                                    No orders yet. Start selling!
+                                <td><span class="fw-semibold">#{{ $order->order_number }}</span></td>
+                                <td>{{ $order->customer->name ?? 'Walk-in Customer' }}</td>
+                                <td>{{ $order->items->count() }} items</td>
+                                <td>TZS {{ number_format($order->total, 0) }}</td>
+                                <td>
+                                    <span class="badge bg-{{ $order->status === 'completed' ? 'success' : ($order->status === 'pending' ? 'warning' : 'secondary') }}">
+                                        {{ ucfirst($order->status) }}
+                                    </span>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-5">
+                                    <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                    <p class="mb-0">No orders yet. Start selling!</p>
+                                    <a href="{{ route('pos') }}" class="btn btn-primary btn-sm mt-3">
+                                        <i class="bi bi-cart-plus me-2"></i>Create First Order
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -86,7 +103,26 @@
                 </h5>
             </div>
             <div class="card-body">
-                <p class="text-muted mb-0">No low stock products. All products are well stocked!</p>
+                @if($lowStockProducts->count() > 0)
+                    <div class="list-group list-group-flush">
+                        @foreach($lowStockProducts as $product)
+                        <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div>
+                                <h6 class="mb-1">{{ $product->name }}</h6>
+                                <small class="text-muted">{{ $product->stock_quantity }} {{ $product->unit }} remaining</small>
+                            </div>
+                            <a href="{{ route('products.index') }}" class="btn btn-sm btn-outline-warning">
+                                Restock
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="text-center py-3">
+                        <i class="bi bi-check-circle text-success fs-1 mb-2"></i>
+                        <p class="text-muted mb-0">All products are well stocked!</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -99,13 +135,13 @@
             </div>
             <div class="card-body">
                 <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-success">
+                    <a href="{{ route('products.create') }}" class="btn btn-success">
                         <i class="bi bi-plus-circle me-2"></i>Add New Product
                     </a>
-                    <a href="#" class="btn btn-primary">
+                    <a href="{{ route('pos') }}" class="btn btn-primary">
                         <i class="bi bi-cart-plus me-2"></i>Open POS
                     </a>
-                    <a href="#" class="btn btn-outline-primary">
+                    <a href="{{ route('orders') }}" class="btn btn-outline-primary">
                         <i class="bi bi-receipt me-2"></i>View Orders
                     </a>
                 </div>
