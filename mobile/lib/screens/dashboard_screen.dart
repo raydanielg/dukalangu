@@ -178,20 +178,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             const SizedBox(width: 12),
-            // Logout button
+            // Avatar with profile navigation
             GestureDetector(
-              onTap: _logout,
+              onTap: _navigateToProfile,
               child: Container(
-                width: 44,
-                height: 44,
+                width: 48,
+                height: 48,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Icon(
-                  Icons.logout,
                   color: Colors.white,
-                  size: 22,
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.5),
+                    width: 2,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: _avatarUrl != null
+                      ? Image.network(
+                          _avatarUrl!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              _buildDefaultAvatar(),
+                        )
+                      : _buildDefaultAvatar(),
                 ),
               ),
             ),
@@ -200,6 +217,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ],
     );
   }
+
+  Widget _buildDefaultAvatar() {
+    return Container(
+      color: AppTheme.primaryGreen.withOpacity(0.1),
+      child: Center(
+        child: Text(
+          _getInitials(_userName ?? 'U'),
+          style: GoogleFonts.nunito(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: AppTheme.primaryGreen,
+          ),
+        ),
+      ),
+    );
+  }
+
+  String _getInitials(String name) {
+    final parts = name.split(' ');
+    if (parts.length >= 2) {
+      return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+    }
+    return name.substring(0, min(2, name.length)).toUpperCase();
+  }
+
+  int min(int a, int b) => a < b ? a : b;
 
   Widget _buildStatsCards() {
     final stats = _statsData?['total_sales'];
