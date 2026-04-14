@@ -611,4 +611,381 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ],
     );
   }
+
+  // Bottom Navigation Bar
+  Widget _buildBottomNav() {
+    return Container(
+      margin: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF166534),
+            Color(0xFF15803d),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 20,
+            spreadRadius: 5,
+            offset: const Offset(0, 8),
+          ),
+          BoxShadow(
+            color: AppTheme.primaryGreen.withOpacity(0.4),
+            blurRadius: 15,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: List.generate(_navItems.length, (index) {
+          final isSelected = _selectedIndex == index;
+          return GestureDetector(
+            onTap: () => _onItemTapped(index),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeOutCubic,
+              padding: EdgeInsets.symmetric(
+                horizontal: isSelected ? 16 : 12,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? Colors.white.withOpacity(0.2)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(16),
+                border: isSelected
+                    ? Border.all(
+                        color: Colors.white.withOpacity(0.3),
+                        width: 1,
+                      )
+                    : null,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AnimatedScale(
+                    scale: isSelected ? 1.2 : 1.0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Icon(
+                      _navItems[index].icon,
+                      color: isSelected ? Colors.white : Colors.white.withOpacity(0.6),
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    _navItems[index].label,
+                    style: GoogleFonts.nunito(
+                      fontSize: isSelected ? 12 : 10,
+                      fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                      color: isSelected ? Colors.white : Colors.white.withOpacity(0.6),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  // Coming Soon Tab
+  Widget _buildComingSoonTab(String title, IconData icon) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 120,
+            height: 120,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.3),
+                width: 2,
+              ),
+            ),
+            child: Icon(
+              icon,
+              size: 60,
+              color: Colors.white.withOpacity(0.8),
+            ),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            title,
+            style: GoogleFonts.nunito(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.3),
+              ),
+            ),
+            child: Text(
+              'Coming Soon',
+              style: GoogleFonts.nunito(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.white.withOpacity(0.9),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'This feature is under development',
+            style: GoogleFonts.nunito(
+              fontSize: 14,
+              color: Colors.white.withOpacity(0.6),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Settings Tab
+  Widget _buildSettingsTab() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          // Profile Section
+          _buildSettingsCard(
+            title: 'Profile',
+            items: [
+              _SettingsItem(
+                icon: Icons.person_outline,
+                title: 'Edit Profile',
+                onTap: _navigateToProfile,
+              ),
+              _SettingsItem(
+                icon: Icons.notifications_outlined,
+                title: 'Notifications',
+                onTap: () {},
+              ),
+              _SettingsItem(
+                icon: Icons.lock_outline,
+                title: 'Change Password',
+                onTap: () {},
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Business Section
+          _buildSettingsCard(
+            title: 'Business',
+            items: [
+              _SettingsItem(
+                icon: Icons.store_outlined,
+                title: 'Store Settings',
+                onTap: () {},
+              ),
+              _SettingsItem(
+                icon: Icons.payments_outlined,
+                title: 'Payment Methods',
+                onTap: () {},
+              ),
+              _SettingsItem(
+                icon: Icons.local_shipping_outlined,
+                title: 'Delivery Options',
+                onTap: () {},
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Support Section
+          _buildSettingsCard(
+            title: 'Support',
+            items: [
+              _SettingsItem(
+                icon: Icons.help_outline,
+                title: 'Help Center',
+                onTap: () {},
+              ),
+              _SettingsItem(
+                icon: Icons.chat_bubble_outline,
+                title: 'Contact Support',
+                onTap: () {},
+              ),
+              _SettingsItem(
+                icon: Icons.info_outline,
+                title: 'About SalamaPay',
+                onTap: () {},
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Logout Button
+          _buildSettingsLogoutButton(),
+          const SizedBox(height: 80),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSettingsCard({
+    required String title,
+    required List<_SettingsItem> items,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            spreadRadius: 5,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text(
+              title,
+              style: GoogleFonts.nunito(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppTheme.textDark,
+              ),
+            ),
+          ),
+          const Divider(height: 1, indent: 20, endIndent: 20),
+          ...items.asMap().entries.map((entry) {
+            final index = entry.key;
+            final item = entry.value;
+            return Column(
+              children: [
+                ListTile(
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 4,
+                  ),
+                  leading: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: AppTheme.primaryGreen.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      item.icon,
+                      color: AppTheme.primaryGreen,
+                      size: 20,
+                    ),
+                  ),
+                  title: Text(
+                    item.title,
+                    style: GoogleFonts.nunito(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppTheme.textDark,
+                    ),
+                  ),
+                  trailing: const Icon(
+                    Icons.chevron_right,
+                    color: AppTheme.textGray,
+                  ),
+                  onTap: item.onTap,
+                ),
+                if (index < items.length - 1)
+                  const Divider(height: 1, indent: 80),
+              ],
+            );
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSettingsLogoutButton() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            spreadRadius: 5,
+          ),
+        ],
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 8,
+        ),
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppTheme.errorColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: const Icon(
+            Icons.logout,
+            color: AppTheme.errorColor,
+            size: 20,
+          ),
+        ),
+        title: Text(
+          'Logout',
+          style: GoogleFonts.nunito(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            color: AppTheme.errorColor,
+          ),
+        ),
+        trailing: const Icon(
+          Icons.chevron_right,
+          color: AppTheme.errorColor,
+        ),
+        onTap: _logout,
+      ),
+    );
+  }
+}
+
+// Navigation Item Class
+class _NavItem {
+  final IconData icon;
+  final String label;
+
+  _NavItem({required this.icon, required this.label});
+}
+
+// Settings Item Class
+class _SettingsItem {
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+
+  _SettingsItem({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
 }
