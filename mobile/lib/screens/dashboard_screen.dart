@@ -7,6 +7,9 @@ import 'auth_screen.dart';
 import 'profile_screen.dart';
 import 'store_screen.dart';
 import 'orders_screen.dart';
+import 'pos_screen.dart';
+import 'qr_screen.dart';
+import 'add_product_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
