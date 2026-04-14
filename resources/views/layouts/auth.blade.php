@@ -8,23 +8,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- SEO Meta Tags - Power Packed -->
-    <title>@yield('title', '{{ config('app.name') }}') | Tanzania\'s Trusted E-Commerce & Business Platform - Sell & Grow</title>
-    <meta name="description" content="@yield('meta_description', '{{ config('app.name') }} helps Tanzanian entrepreneurs create online stores, advertise products, and receive orders seamlessly. Start your business journey today!')">
-    <meta name="keywords" content="@yield('meta_keywords', '{{ config('app.name') }}, Tanzania e-commerce, online store, sell products, business platform, matangazo, biashara mtandaoni, wafanyabiashara, dukani mtandaoni')">
+    <title>@yield('title') | {{ config('app.name') }} - Tanzania's Trusted E-Commerce & Business Platform</title>
+    <meta name="description" content="@yield('meta_description', config('app.name') . ' helps Tanzanian entrepreneurs create online stores, advertise products, and receive orders seamlessly.')">
+    <meta name="keywords" content="@yield('meta_keywords', config('app.name') . ', Tanzania e-commerce, online store, sell products, business platform, matangazo, biashara mtandaoni, wafanyabiashara')">
     <meta name="author" content="{{ config('app.name') }} Team">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('og_title', '{{ config('app.name') }} - Tanzania\'s Trusted E-Commerce Platform')">
+    <meta property="og:title" content="@yield('og_title') | {{ config('app.name') }} - Tanzania's Trusted E-Commerce Platform">
     <meta property="og:description" content="@yield('og_description', 'Create your online store, advertise products, and receive orders seamlessly. Join thousands of Tanzanian entrepreneurs!')">
     <meta property="og:image" content="@yield('og_image', asset('Salama logo.png'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('twitter_title', '{{ config('app.name') }} - Tanzania\'s Trusted E-Commerce Platform')">
+    <meta property="twitter:title" content="@yield('twitter_title') | {{ config('app.name') }} - Tanzania's Trusted E-Commerce Platform">
     <meta property="twitter:description" content="@yield('twitter_description', 'Create your online store and sell products seamlessly.')">
     <meta property="twitter:image" content="@yield('twitter_image', asset('Salama logo.png'))">
 
