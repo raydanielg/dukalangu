@@ -40,6 +40,23 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Store routes
     Route::get('/store/link', [DashboardController::class, 'getStoreLink']);
+    Route::get('/store', [StoreController::class, 'index']);
+    Route::get('/store/products', [StoreController::class, 'getProducts']);
+    Route::post('/store/products', [StoreController::class, 'createProduct']);
+    Route::put('/store/products/{id}', [StoreController::class, 'updateProduct']);
+    Route::delete('/store/products/{id}', [StoreController::class, 'deleteProduct']);
+    Route::get('/store/categories', [StoreController::class, 'getCategories']);
+    Route::get('/store/analytics', [StoreController::class, 'getAnalytics']);
+    Route::put('/store/settings', [StoreController::class, 'updateSettings']);
+    Route::post('/store/verify-qr', [StoreController::class, 'verifyQR']);
+
+    // Order routes
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders/stats', [OrderController::class, 'getStats']);
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
+    Route::post('/orders', [OrderController::class, 'create']);
+    Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
+    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel']);
 });
 
 // Health check
