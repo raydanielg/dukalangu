@@ -195,19 +195,21 @@
     <!-- Empty State -->
     <div class="empty-state animate__animated animate__fadeIn">
         <div class="empty-icon">
-            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-                <path d="M12 7 L12 7" stroke-width="3" stroke-linecap="round"></path>
-                <path d="M12 11 L12 11" stroke-width="3" stroke-linecap="round"></path>
-                <path d="M8 7 L8 7" stroke-width="3" stroke-linecap="round"></path>
-                <path d="M8 11 L8 11" stroke-width="3" stroke-linecap="round"></path>
-                <path d="M16 7 L16 7" stroke-width="3" stroke-linecap="round"></path>
-                <path d="M16 11 L16 11" stroke-width="3" stroke-linecap="round"></path>
-            </svg>
+            <div class="empty-icon-circle">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                    <path d="M12 7 L12 7" stroke-width="3" stroke-linecap="round"></path>
+                    <path d="M12 11 L12 11" stroke-width="3" stroke-linecap="round"></path>
+                    <path d="M8 7 L8 7" stroke-width="3" stroke-linecap="round"></path>
+                    <path d="M8 11 L8 11" stroke-width="3" stroke-linecap="round"></path>
+                    <path d="M16 7 L16 7" stroke-width="3" stroke-linecap="round"></path>
+                    <path d="M16 11 L16 11" stroke-width="3" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </div>
-        <h4 class="mt-3">No Products Yet</h4>
+        <h4 class="mt-3 fw-bold text-success">No Products Yet</h4>
         <p class="text-muted mb-4">Start adding products to your store inventory!</p>
         <a href="{{ route('products.create') }}" class="btn btn-primary btn-lg">
             <i data-lucide="plus-circle" class="me-2"></i>Add Your First Product
@@ -273,9 +275,19 @@
     border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
-.empty-icon svg {
-    color: #dc2626;
-    opacity: 0.8;
+.empty-icon-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+}
+.empty-icon-circle svg {
+    color: white;
 }
 </style>
 @endsection
