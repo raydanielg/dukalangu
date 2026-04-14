@@ -29,10 +29,181 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f8fafc;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f3f4f6;
             min-height: 100vh;
-            color: #334155;
+            color: #374151;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            margin-left: 240px;
+            min-height: 100vh;
+            background: #f3f4f6;
+        }
+
+        .content-wrapper {
+            padding: 24px 32px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .stat-icon.red { background: #fef2f2; color: #dc2626; }
+        .stat-icon.green { background: #f0fdf4; color: #16a34a; }
+        .stat-icon.blue { background: #eff6ff; color: #2563eb; }
+        .stat-icon.yellow { background: #fefce8; color: #eab308; }
+        .stat-icon.purple { background: #faf5ff; color: #9333ea; }
+
+        .stat-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0;
+        }
+
+        .stat-content p {
+            color: #6b7280;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* Cards */
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+
+        .dashboard-card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .dashboard-card-body {
+            padding: 24px;
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #f9fafb;
+        }
+
+        .data-table td {
+            padding: 16px;
+            font-size: 14px;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .data-table tr:hover td {
+            background: #f9fafb;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-success { background: #dcfce7; color: #16a34a; }
+        .status-warning { background: #fef3c7; color: #d97706; }
+        .status-danger { background: #fee2e2; color: #dc2626; }
+        .status-info { background: #dbeafe; color: #2563eb; }
+        .status-secondary { background: #f3f4f6; color: #6b7280; }
+
+        /* Buttons */
+        .btn-primary {
+            background: #dc2626;
+            border-color: #dc2626;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background: #b91c1c;
+            border-color: #b91c1c;
+        }
+
+        .btn-outline-primary {
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+
+        .btn-outline-primary:hover {
+            background: #dc2626;
+            border-color: #dc2626;
         }
 
         /* Sidebar - Dark Style Like Snippe */
