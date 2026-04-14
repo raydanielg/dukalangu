@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Set New Password')
-@section('meta_description', 'Set your new Salamapay password securely. Regain access to your payment and job platform account.')
-@section('meta_keywords', 'reset password, new password, Salamapay account recovery, secure password reset')
+@section('meta_description', 'Set your new '.config('app.name').' password securely. Regain access to your online store and continue managing your business.')
+@section('meta_keywords', 'reset password, new password, '.config('app.name').' account recovery, secure password reset')
 
 @section('content')
 <div class="auth-container">
@@ -16,14 +16,14 @@
                     </div>
                 </div>
                 <h1 class="portal-title">New Password</h1>
-                <p class="portal-subtitle">SECURE YOUR ACCOUNT</p>
+                <p class="portal-subtitle">SECURE YOUR BUSINESS ACCOUNT</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Create a strong password to protect your Salamapay account and continue accessing secure payments and job opportunities.
+                    Create a strong password to protect your {{ config('app.name') }} account and continue managing your online store and orders.
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
+                <p class="copyright">© 2026 {{ config('app.name') }}. All rights reserved.</p>
             </div>
         </div>
 
@@ -102,7 +102,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
                     </div>
                 </form>
             </div>

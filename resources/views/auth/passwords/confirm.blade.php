@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Confirm Password')
-@section('meta_description', 'Confirm your Salamapay password to continue. Secure access to your payment and job platform account.')
-@section('meta_keywords', 'confirm password, verify password, Salamapay security, secure access')
+@section('meta_description', 'Confirm your '.config('app.name').' password to continue. Secure access to your online store and business dashboard.')
+@section('meta_keywords', 'confirm password, verify password, '.config('app.name').' security, business account access')
 
 @section('content')
 <div class="auth-container">
@@ -16,14 +16,14 @@
                     </div>
                 </div>
                 <h1 class="portal-title">Security Check</h1>
-                <p class="portal-subtitle">PROTECTING YOUR ACCOUNT</p>
+                <p class="portal-subtitle">PROTECTING YOUR BUSINESS</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Please confirm your password to continue accessing your Salamapay account securely.
+                    Please confirm your password to continue accessing your {{ config('app.name') }} store and managing your business securely.
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
+                <p class="copyright">© 2026 {{ config('app.name') }}. All rights reserved.</p>
             </div>
         </div>
 
@@ -71,7 +71,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
                     </div>
                 </form>
             </div>

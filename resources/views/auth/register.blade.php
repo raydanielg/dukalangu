@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Create Account')
-@section('meta_description', 'Create your Salamapay account today. Join Tanzania\'s trusted payment and job platform. Secure payments and career opportunities await.')
-@section('meta_keywords', 'register Salamapay, create account, sign up, payment account Tanzania, join job portal')
+@section('meta_description', 'Create your '.config('app.name').' account today. Start selling online, manage your store, and grow your business in Tanzania.')
+@section('meta_keywords', 'register '.config('app.name').', create store, sign up, business account Tanzania, online seller, wafanyabiashara')
 
 @section('content')
 <div class="auth-container">
@@ -15,15 +15,15 @@
                         <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 120px; height: auto;">
                     </div>
                 </div>
-                <h1 class="portal-title">Join Salamapay</h1>
-                <p class="portal-subtitle">SECURE PAYMENTS & CAREER GROWTH</p>
+                <h1 class="portal-title">Join {{ config('app.name') }}</h1>
+                <p class="portal-subtitle">START YOUR ONLINE BUSINESS TODAY</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Create an account to access secure payment solutions and unlock thousands of job opportunities across Tanzania.
+                    Create an account to build your online store, advertise products, receive orders, and manage your business seamlessly. Join thousands of Tanzanian entrepreneurs!
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
+                <p class="copyright">© 2026 {{ config('app.name') }}. All rights reserved.</p>
             </div>
         </div>
 
@@ -116,7 +116,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
                     </div>
                 </form>
             </div>

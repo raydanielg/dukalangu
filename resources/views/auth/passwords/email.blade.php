@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Reset Password')
-@section('meta_description', 'Reset your Salamapay account password. Securely regain access to your payment and job platform account.')
-@section('meta_keywords', 'reset password, forgot password, Salamapay password recovery, secure account recovery')
+@section('meta_description', 'Reset your '.config('app.name').' account password. Securely regain access to your online store and business dashboard.')
+@section('meta_keywords', 'reset password, forgot password, '.config('app.name').' password recovery, business account recovery')
 
 @section('content')
 <div class="auth-container">
@@ -17,14 +17,14 @@
                     </div>
                 </div>
                 <h1 class="portal-title">Password Recovery</h1>
-                <p class="portal-subtitle">GET BACK TO YOUR ACCOUNT</p>
+                <p class="portal-subtitle">GET BACK TO YOUR BUSINESS</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Enter your email address and we'll send you a link to securely reset your password.
+                    Enter your email address and we'll send you a link to securely reset your password and regain access to your store.
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
+                <p class="copyright">© 2026 {{ config('app.name') }}. All rights reserved.</p>
             </div>
         </div>
 
@@ -75,7 +75,7 @@
 
                     <!-- Help Section -->
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
                     </div>
                 </form>
             </div>

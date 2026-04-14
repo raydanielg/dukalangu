@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Verify Email')
-@section('meta_description', 'Verify your email address on Salamapay. Complete your registration and start accessing secure payments and job opportunities.')
-@section('meta_keywords', 'verify email, email verification, Salamapay confirmation, account activation')
+@section('meta_description', 'Verify your email address on '.config('app.name').'. Complete your registration and start creating your online store and selling products.')
+@section('meta_keywords', 'verify email, email verification, '.config('app.name').' confirmation, business account activation, online store setup')
 
 @section('content')
 <div class="auth-container">
@@ -16,14 +16,14 @@
                     </div>
                 </div>
                 <h1 class="portal-title">Verify Email</h1>
-                <p class="portal-subtitle">COMPLETE YOUR REGISTRATION</p>
+                <p class="portal-subtitle">ACTIVATE YOUR BUSINESS ACCOUNT</p>
                 <div class="divider-line"></div>
                 <p class="portal-description">
-                    Please verify your email address to activate your Salamapay account and start accessing secure payments and job opportunities.
+                    Please verify your email address to activate your {{ config('app.name') }} account and start creating your online store, advertising products, and receiving orders.
                 </p>
             </div>
             <div class="branding-footer">
-                <p class="copyright">© 2026 Salamapay. All rights reserved.</p>
+                <p class="copyright">© 2026 {{ config('app.name') }}. All rights reserved.</p>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="help-section">
-                        <p>Need help? Contact us at <a href="mailto:support@salamapay.co.tz">support@salamapay.co.tz</a></p>
+                        <p>Need help? Contact us at <a href="mailto:support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz">support@{{ strtolower(str_replace(' ', '', config('app.name'))) }}.co.tz</a></p>
                     </div>
                 </div>
             </div>
