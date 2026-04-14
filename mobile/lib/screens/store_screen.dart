@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
+import '../services/api_service.dart';
+import 'add_product_screen.dart';
 
 class StoreScreen extends StatefulWidget {
   const StoreScreen({super.key});
@@ -10,43 +12,43 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
+  final _apiService = ApiService();
   bool _isLoading = true;
-  List<Map<String, dynamic>> _products = [];
+  List<dynamic> _products = [];
+  Map<String, dynamic>? _storeData;
+  Map<String, dynamic>? _analytics;
 
   @override
   void initState() {
     super.initState();
-    _loadProducts();
+    _loadStoreData();
   }
 
-  Future<void> _loadProducts() async {
-    await Future.delayed(const Duration(seconds: 1));
+  Future<void> _loadStoreData() async {
+    setState(() => _isLoading = true);
+
+    final results = await Future.wait([
+      _apiService.getStore(),
+      _apiService.getStoreProducts(),
+      _apiService.getStoreAnalytics(),
+    ]);
+
+    final store = results[0];
+    final products = results[1];
+    final analytics = results[2];
+
     setState(() {
-      _products = [
-        {
-          'id': 1,
-          'name': 'iPhone 15 Pro',
-          'price': 2500000,
-          'stock': 5,
-          'image': null,
-        },
-        {
-          'id': 2,
-          'name': 'Samsung Galaxy S24',
-          'price': 2100000,
-          'stock': 8,
-          'image': null,
-        },
-        {
-          'id': 3,
-          'name': 'AirPods Pro',
-          'price': 450000,
-          'stock': 12,
-          'image': null,
-        },
-      ];
+      _storeData = store['data'];
+      _products = products['data']?['products'] ?? [];
+      _analytics = analytics['data'];
       _isLoading = false;
     });
+  }
+
+  void _navigateToAddProduct() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const AddProductScreen()),
+    ).then((_) => _loadStoreData());
   }
 
   @override
