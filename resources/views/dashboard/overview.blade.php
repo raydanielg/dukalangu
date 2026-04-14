@@ -494,35 +494,48 @@
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Toggle Chart Function
+// Toggle Chart Function - Fixed for Bootstrap 5 collapse
 function toggleChart(bodyId, iconId) {
     const body = document.getElementById(bodyId);
     const icon = document.getElementById(iconId);
     
+    if (!body || !icon) return;
+    
+    // Use Bootstrap collapse
+    const bsCollapse = bootstrap.Collapse.getInstance(body) || new bootstrap.Collapse(body, {toggle: false});
+    
     if (body.classList.contains('show')) {
-        body.classList.remove('show');
+        bsCollapse.hide();
         icon.style.transform = 'rotate(-90deg)';
     } else {
-        body.classList.add('show');
+        bsCollapse.show();
         icon.style.transform = 'rotate(0deg)';
     }
 }
 
-// Real Data from Database
-const chartLabels = @json($labels);
-const ordersData = @json($chartData['orders']);
-const paymentsData = @json($chartData['payments']);
-const customersData = @json($chartData['customers']);
+// Real Data from Database with Fallbacks
+const chartLabels = @json($labels ?? []);
+const ordersData = @json($chartData['orders'] ?? []);
+const paymentsData = @json($chartData['payments'] ?? []);
+const customersData = @json($chartData['customers'] ?? []);
 
-// Activity Trend Chart with Real Data
-const activityCtx = document.getElementById('activityChart').getContext('2d');
+// Ensure arrays have data
+const safeLabels = chartLabels.length > 0 ? chartLabels : ['No Data'];
+const safeOrders = ordersData.length > 0 ? ordersData : [0];
+const safePayments = paymentsData.length > 0 ? paymentsData : [0];
+const safeCustomers = customersData.length > 0 ? customersData : [0];
+
+// Activity Trend Chart with Real Data - Only initialize if canvas exists
+const activityCanvas = document.getElementById('activityChart');
+if (activityCanvas) {
+const activityCtx = activityCanvas.getContext('2d');
 const activityChart = new Chart(activityCtx, {
     type: 'line',
     data: {
-        labels: chartLabels,
+        labels: safeLabels,
         datasets: [{
             label: 'Orders',
-            data: ordersData,
+            data: safeOrders,
             borderColor: '#3b82f6',
             backgroundColor: 'rgba(59, 130, 246, 0.1)',
             fill: true,
