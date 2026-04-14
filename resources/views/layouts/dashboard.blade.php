@@ -33,84 +33,85 @@
             color: #334155;
         }
 
-        /* Sidebar Styles */
+        /* Sidebar Styles - Clean White */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
-            background: var(--sidebar-bg);
+            background: #ffffff;
             position: fixed;
             left: 0;
             top: 0;
             z-index: 1000;
             transition: all 0.3s ease;
             overflow-y: auto;
+            border-right: 1px solid #e2e8f0;
         }
 
         .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--sidebar-hover);
-            text-align: center;
+            padding: 24px 20px;
+            border-bottom: 1px solid #f1f5f9;
         }
 
         .sidebar-logo {
-            width: 80px;
-            height: auto;
-            margin-bottom: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: contain;
         }
 
         .sidebar-brand {
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: 600;
             margin: 0;
         }
 
         .sidebar-subtitle {
-            color: #94a3b8;
+            color: #64748b;
             font-size: 12px;
             margin: 0;
         }
 
         .sidebar-menu {
-            padding: 20px 0;
+            padding: 16px 12px;
         }
 
         .menu-category {
-            color: #64748b;
+            color: #94a3b8;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0 20px 10px;
-            margin-top: 20px;
+            letter-spacing: 0.5px;
+            padding: 0 12px 8px;
+            margin-top: 24px;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
-            color: #cbd5e1;
+            padding: 10px 12px;
+            color: #475569;
             text-decoration: none;
             transition: all 0.2s ease;
-            border-left: 3px solid transparent;
+            border-radius: 8px;
+            margin: 2px 0;
         }
 
         .menu-item:hover {
-            background: var(--sidebar-hover);
-            color: white;
+            background: #f1f5f9;
+            color: #0f172a;
             text-decoration: none;
         }
 
         .menu-item.active {
-            background: var(--sidebar-hover);
-            color: white;
-            border-left-color: var(--sidebar-active);
+            background: #dcfce7;
+            color: var(--primary-green);
         }
 
         .menu-item i {
             font-size: 18px;
             margin-right: 12px;
-            width: 24px;
+            width: 20px;
             text-align: center;
         }
 
@@ -131,7 +132,7 @@
         /* Submenu Styles */
         .submenu {
             display: none;
-            background: #0f172a;
+            padding-left: 12px;
         }
 
         .submenu.show {
@@ -140,20 +141,24 @@
 
         .submenu-item {
             display: block;
-            padding: 10px 20px 10px 56px;
-            color: #94a3b8;
+            padding: 8px 12px 8px 44px;
+            color: #64748b;
             text-decoration: none;
             font-size: 13px;
             transition: all 0.2s ease;
+            border-radius: 6px;
+            margin: 2px 0;
         }
 
         .submenu-item:hover {
-            color: white;
+            color: #0f172a;
+            background: #f8fafc;
             text-decoration: none;
         }
 
         .submenu-item.active {
-            color: var(--primary-green-light);
+            color: var(--primary-green);
+            background: #dcfce7;
         }
 
         /* Main Content */
