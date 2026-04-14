@@ -193,25 +193,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onRefresh: _loadDashboardData,
                 color: AppTheme.primaryGreen,
                 backgroundColor: Colors.white,
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildHeader(),
-                      const SizedBox(height: 24),
-                      _buildHorizontalStatsCards(),
-                      const SizedBox(height: 20),
-                      _buildStatsIndicators(),
-                      const SizedBox(height: 24),
-                      _buildQuickActions(),
-                      const SizedBox(height: 24),
-                      _buildChartSection(),
-                      const SizedBox(height: 24),
-                      _buildRecentActivity(),
-                      const SizedBox(height: 100),
-                    ],
-                  ),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            _buildHeader(),
+                            const SizedBox(height: 24),
+                            _buildHorizontalStatsCards(),
+                            const SizedBox(height: 20),
+                            _buildStatsIndicators(),
+                            const SizedBox(height: 24),
+                            _buildQuickActions(),
+                            const SizedBox(height: 24),
+                            _buildChartSection(),
+                            const SizedBox(height: 24),
+                            _buildRecentActivity(),
+                            const SizedBox(height: 100),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
       ),
