@@ -151,14 +151,16 @@
     <!-- Empty State with Nice SVG -->
     <div class="empty-state animate__animated animate__fadeIn">
         <div class="empty-icon">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                <line x1="12" y1="2" x2="12" y2="12" stroke-dasharray="4 4"></line>
-                <circle cx="12" cy="7" r="2" fill="currentColor" stroke="none"></circle>
-            </svg>
+            <div class="empty-icon-circle">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    <line x1="12" y1="2" x2="12" y2="12" stroke-dasharray="4 4"></line>
+                    <circle cx="12" cy="7" r="2" fill="currentColor" stroke="none"></circle>
+                </svg>
+            </div>
         </div>
-        <h4 class="mt-3">No Stores Yet</h4>
+        <h4 class="mt-3 fw-bold text-success">No Stores Yet</h4>
         <p class="text-muted mb-4">Create your first online store to start selling!</p>
         <a href="{{ route('store.builder') }}" class="btn btn-primary btn-lg">
             <i data-lucide="plus-circle" class="me-2"></i>Create Your First Store
@@ -311,10 +313,20 @@
     margin: 0 auto 24px;
 }
 
-.empty-icon i {
-    width: 48px;
-    height: 48px;
-    color: #dc2626;
+.empty-icon-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+}
+
+.empty-icon-circle svg {
+    color: white;
 }
 
 .empty-state h4 {
