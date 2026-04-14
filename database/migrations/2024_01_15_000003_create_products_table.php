@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('sku')->nullable()->unique();
+            $table->string('barcode')->nullable()->unique();
             $table->decimal('price', 12, 2)->default(0);
             $table->decimal('cost_price', 12, 2)->default(0);
             $table->integer('stock_quantity')->default(0);
