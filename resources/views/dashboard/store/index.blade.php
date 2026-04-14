@@ -354,13 +354,39 @@
     border-top: 1px solid #f3f4f6;
 }
 
+/* Stat Cards */
+.stat-card-small {
+    transition: all 0.2s;
+}
+
+.stat-card-small:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.stat-icon-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon-small i {
+    width: 24px;
+    height: 24px;
+}
+
 /* Empty State */
 .empty-state {
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 40px;
     background: white;
     border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.empty-state .btn {
+    padding: 15px 40px;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
 .empty-icon {
