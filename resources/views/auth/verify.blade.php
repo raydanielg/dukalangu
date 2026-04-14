@@ -11,9 +11,8 @@
         <div class="auth-branding">
             <div class="branding-content">
                 <div class="logo-section">
-                    <div class="logo-circle">
-                        <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 120px; height: auto;">
-                    </div>
+                    <!-- Logo without box/circle design -->
+                    <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}" class="salamapay-logo" style="width: 150px; height: auto; margin-bottom: 16px;">
                 </div>
                 <h1 class="portal-title">Verify Email</h1>
                 <p class="portal-subtitle">ACTIVATE YOUR BUSINESS ACCOUNT</p>

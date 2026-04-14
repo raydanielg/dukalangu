@@ -85,24 +85,25 @@
 }
 
 .logo-section {
-    margin-bottom: 24px;
+    margin-bottom: 8px;
+    text-align: center;
 }
 
-.logo-circle {
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--text-gray);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Logo without box/circle design - clean appearance */
+.salamapay-logo {
+    max-width: 150px;
+    height: auto;
+    display: block;
     margin: 0 auto;
 }
 
+/* Legacy styles - keeping for compatibility */
+.logo-circle {
+    display: none;
+}
+
 .pccb-logo {
-    width: 80px;
-    height: 80px;
-    color: var(--text-dark);
+    display: none;
 }
 
 .portal-title {
