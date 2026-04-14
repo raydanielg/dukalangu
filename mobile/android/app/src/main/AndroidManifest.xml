@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tz.go.pccb.salama">
+    package="com.salamapay.mobile">
     <application
         android:label="Salama"
         android:name="${applicationName}"
