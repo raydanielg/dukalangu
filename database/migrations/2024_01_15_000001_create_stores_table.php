@@ -15,9 +15,11 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('phone')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('logo')->nullable();
+            $table->string('template')->default('modern');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
