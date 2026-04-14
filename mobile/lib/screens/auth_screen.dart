@@ -757,38 +757,12 @@ class _AuthScreenState extends State<AuthScreen>
   }
 
   Widget _buildSocialIconsRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // Google
-        _buildSocialIconButton(
-          onTap: () {},
-          icon: _buildGoogleIcon(size: 24),
-          bgColor: Colors.white,
-        ),
-        const SizedBox(width: 20),
-        // Facebook
-        _buildSocialIconButton(
-          onTap: () {},
-          icon: const Icon(
-            Icons.facebook,
-            color: Color(0xFF1877F2),
-            size: 28,
-          ),
-          bgColor: Colors.white,
-        ),
-        const SizedBox(width: 20),
-        // X (Twitter)
-        _buildSocialIconButton(
-          onTap: () {},
-          icon: const Icon(
-            Icons.close,
-            color: Colors.black,
-            size: 24,
-          ),
-          bgColor: Colors.white,
-        ),
-      ],
+    return Center(
+      child: _buildSocialIconButton(
+        onTap: () {},
+        icon: _buildGoogleIcon(size: 28),
+        bgColor: Colors.white,
+      ),
     );
   }
 
@@ -798,30 +772,30 @@ class _AuthScreenState extends State<AuthScreen>
     required Color bgColor,
   }) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 56,
+      height: 56,
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: const Color(0xFFe2e8f0),
-          width: 1,
+          width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 8,
-            spreadRadius: 1,
-            offset: const Offset(0, 2),
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 12,
+            spreadRadius: 2,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Material(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           child: Center(child: icon),
         ),
       ),
