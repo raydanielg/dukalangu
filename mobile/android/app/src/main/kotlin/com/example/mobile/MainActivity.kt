@@ -1,4 +1,4 @@
-package com.example.mobile
+package tz.go.pccb.salama
 
 import io.flutter.embedding.android.FlutterActivity
 
