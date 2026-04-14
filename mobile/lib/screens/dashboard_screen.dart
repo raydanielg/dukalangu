@@ -10,6 +10,7 @@ import 'orders_screen.dart';
 import 'pos_screen.dart';
 import 'qr_screen.dart';
 import 'add_product_screen.dart';
+import 'barcode_scanner_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
