@@ -29,7 +29,7 @@
         <!-- Right Side - Register Form -->
         <div class="auth-form-section">
             <div class="form-container">
-                <div class="form-header">
+                <div class="form-header" style="margin-top: 20px;">
                     <h2 class="welcome-title">Create Account</h2>
                     <p class="welcome-subtitle">Start your online business journey today</p>
                 </div>
@@ -54,15 +54,13 @@
                         @enderror
                     </div>
 
-                    <!-- Phone Number Field (Required) -->
+                    <!-- Phone Number Field (Required) with Country Code -->
                     <div class="form-group">
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
+                        <div class="input-wrapper" style="display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+                            <span style="padding: 12px 10px; background: #f3f4f6; border-right: 1px solid var(--border-color); color: var(--text-dark); font-weight: 600; font-size: 14px; white-space: nowrap;">
+                                🇹🇿 +255
                             </span>
-                            <input id="phone" type="tel" class="form-input @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="tel" placeholder="Phone Number* (e.g., 0712345678)" pattern="[0-9]{10}" title="Enter 10 digit phone number">
+                            <input id="phone" type="tel" class="form-input @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="tel" placeholder="Phone Number*" pattern="[0-9]{9}" title="Enter 9 digit phone number (e.g., 712345678)" style="border: none; border-radius: 0; flex: 1;">
                         </div>
                         @error('phone')
                             <span class="error-message" role="alert">
