@@ -309,8 +309,8 @@ class _AuthScreenState extends State<AuthScreen>
                 // Error message
                 if (_errorMessage != null) _buildErrorBanner(),
                 if (_errorMessage != null) const SizedBox(height: 16),
-                // Email field
-                _buildEmailField(),
+                // Phone field
+                _buildPhoneField(),
                 const SizedBox(height: 20),
                 // Password field
                 _buildPasswordField(),
@@ -321,11 +321,14 @@ class _AuthScreenState extends State<AuthScreen>
                 // Sign in button
                 _buildPowerfulSignInButton(),
                 const SizedBox(height: 24),
+                // Create account
+                _buildCreateAccount(),
+                const SizedBox(height: 20),
                 // Divider
                 _buildOrDivider(),
                 const SizedBox(height: 20),
-                // Create account
-                _buildCreateAccount(),
+                // Social login buttons
+                _buildSocialLoginButtons(),
               ],
             ),
           ),
@@ -559,7 +562,7 @@ class _AuthScreenState extends State<AuthScreen>
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {},
+        onPressed: _navigateToForgotPassword,
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
           minimumSize: Size.zero,

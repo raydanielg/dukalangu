@@ -11,7 +11,7 @@
             <i class="bi bi-cash-stack"></i>
         </div>
         <div class="stat-content">
-            <h3>TZS 0</h3>
+            <h3>TZS {{ number_format($stats['total_sales_today'], 0) }}</h3>
             <p>Total Sales Today</p>
         </div>
     </div>
@@ -20,7 +20,7 @@
             <i class="bi bi-cart-check"></i>
         </div>
         <div class="stat-content">
-            <h3>0</h3>
+            <h3>{{ $stats['orders_today'] }}</h3>
             <p>Orders Today</p>
         </div>
     </div>
@@ -29,7 +29,7 @@
             <i class="bi bi-box-seam"></i>
         </div>
         <div class="stat-content">
-            <h3>0</h3>
+            <h3>{{ $stats['products_in_stock'] }}</h3>
             <p>Products in Stock</p>
         </div>
     </div>
@@ -38,7 +38,7 @@
             <i class="bi bi-people"></i>
         </div>
         <div class="stat-content">
-            <h3>0</h3>
+            <h3>{{ $stats['total_customers'] }}</h3>
             <p>Total Customers</p>
         </div>
     </div>
