@@ -1,4 +1,4 @@
-package tz.go.pccb.salama
+package com.salamapay.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
