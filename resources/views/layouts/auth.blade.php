@@ -7,26 +7,26 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- SEO Meta Tags - Power Packed -->
-    <title>@yield('title', 'Dukalangu') | Tanzania\'s Premier Job Portal - Find Your Dream Career</title>
-    <meta name="description" content="@yield('meta_description', 'Dukalangu is Tanzania\'s leading job portal connecting talent with opportunities. Find jobs, post vacancies, and accelerate your career today.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'jobs Tanzania, employment, career opportunities, job portal,招聘, ajira, kazi Tanzania, Dukalangu')">
-    <meta name="author" content="Dukalangu Team">
+    <!-- SEO Meta Tags - Power Packed for Salamapay -->
+    <title>@yield('title', 'Salamapay') | Tanzania\'s Trusted Payment & Job Platform - Secure & Fast</title>
+    <meta name="description" content="@yield('meta_description', 'Salamapay is Tanzania\'s trusted platform for secure payments, job opportunities, and career growth. Connect with employers, process payments, and build your future today.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Salamapay, payments Tanzania, mobile money, job portal, secure payments, employment, career opportunities, ajira, kazi Tanzania, fintech Tanzania')">
+    <meta name="author" content="Salamapay Team">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('og_title', 'Dukalangu - Tanzania\'s Premier Job Portal')">
-    <meta property="og:description" content="@yield('og_description', 'Connect with top employers and find your dream job in Tanzania. Thousands of opportunities await!')">
-    <meta property="og:image" content="@yield('og_image', asset('images/dukalangu-og.jpg'))">
+    <meta property="og:title" content="@yield('og_title', 'Salamapay - Tanzania\'s Trusted Payment & Job Platform')">
+    <meta property="og:description" content="@yield('og_description', 'Secure payments and job opportunities in one platform. Join thousands of Tanzanians trusting Salamapay for their career and financial needs!')">
+    <meta property="og:image" content="@yield('og_image', asset('Salama logo.png'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('twitter_title', 'Dukalangu - Tanzania\'s Premier Job Portal')">
-    <meta property="twitter:description" content="@yield('twitter_description', 'Connect with top employers and find your dream job in Tanzania.')">
-    <meta property="twitter:image" content="@yield('twitter_image', asset('images/dukalangu-og.jpg'))">
+    <meta property="twitter:title" content="@yield('twitter_title', 'Salamapay - Tanzania\'s Trusted Payment & Job Platform')">
+    <meta property="twitter:description" content="@yield('twitter_description', 'Secure payments and job opportunities in one trusted platform.')">
+    <meta property="twitter:image" content="@yield('twitter_image', asset('Salama logo.png'))">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
