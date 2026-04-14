@@ -42,7 +42,6 @@
             <i class="bi bi-receipt stat-box-icon"></i>
         </div>
         <div class="stat-box-value">{{ $stats['orders_today'] }}</div>
-        <div class="stat-box-subtitle">This week</div>
     </div>
 </div>
 
