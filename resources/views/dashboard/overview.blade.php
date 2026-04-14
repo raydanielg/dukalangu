@@ -544,7 +544,7 @@ const activityChart = new Chart(activityCtx, {
             pointBackgroundColor: '#3b82f6'
         }, {
             label: 'Payments',
-            data: paymentsData,
+            data: safePayments,
             borderColor: '#10b981',
             backgroundColor: 'transparent',
             fill: false,
@@ -553,7 +553,7 @@ const activityChart = new Chart(activityCtx, {
             pointBackgroundColor: '#10b981'
         }, {
             label: 'Customers',
-            data: customersData,
+            data: safeCustomers,
             borderColor: '#f59e0b',
             backgroundColor: 'transparent',
             fill: false,
@@ -609,6 +609,7 @@ const activityChart = new Chart(activityCtx, {
         }
     }
 });
+} // End if activityCanvas exists
 
 // Real Distribution Data
 const distLabels = @json($distributionData['labels']);
