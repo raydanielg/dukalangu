@@ -15,9 +15,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Store Builder Routes
-Route::get('/store/builder', [App\Http\Controllers\StoreBuilderController::class, 'index'])->name('store.builder');
+// Store Routes
+Route::get('/stores', [App\Http\Controllers\StoreBuilderController::class, 'index'])->name('store.index');
+Route::get('/store/builder', [App\Http\Controllers\StoreBuilderController::class, 'create'])->name('store.builder');
 Route::post('/store/builder', [App\Http\Controllers\StoreBuilderController::class, 'store'])->name('store.builder.save');
+Route::delete('/store/{id}', [App\Http\Controllers\StoreBuilderController::class, 'destroy'])->name('store.destroy');
 Route::get('/store/{slug}', [App\Http\Controllers\StoreController::class, 'show'])->name('store.public');
 
 // Product Routes
