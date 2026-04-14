@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 import '../services/api_service.dart';
 import 'auth_screen.dart';
+import 'profile_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -17,6 +18,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Map<String, dynamic>? _dashboardData;
   Map<String, dynamic>? _statsData;
   String? _userName;
+  String? _userEmail;
+  String? _userPhone;
+  String? _avatarUrl;
 
   @override
   void initState() {
@@ -34,6 +38,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _dashboardData = dashboard['data'];
       _statsData = stats['data'];
       _userName = _dashboardData?['user']?['name'] ?? 'User';
+      _userEmail = _dashboardData?['user']?['email'];
+      _userPhone = _dashboardData?['user']?['phone'];
+      _avatarUrl = _dashboardData?['user']?['avatar_url'];
       _isLoading = false;
     });
   }
@@ -46,6 +53,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
         (route) => false,
       );
     }
+  }
+
+  void _navigateToProfile() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => ProfileScreen(
+          userName: _userName ?? 'User',
+          userEmail: _userEmail,
+          userPhone: _userPhone,
+          avatarUrl: _avatarUrl,
+        ),
+      ),
+    );
   }
 
   @override
