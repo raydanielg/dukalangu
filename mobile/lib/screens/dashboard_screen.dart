@@ -57,7 +57,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     _autoScrollTimer?.cancel();
     _autoScrollTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
       if (_statsPageController.hasClients) {
-        final nextPage = (_currentStatsPage + 1) % 4;
+        final nextPage = (_currentStatsPage + 1) % 2; // 2 pages
         _statsPageController.animateToPage(
           nextPage,
           duration: const Duration(milliseconds: 600),
