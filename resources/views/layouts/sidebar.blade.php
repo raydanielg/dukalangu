@@ -12,14 +12,14 @@
 
     <nav class="sidebar-nav">
         <div class="nav-section">
-            <span class="nav-label">Main</span>
+            <div class="nav-section-title">Main</div>
             <a href="{{ route('home') }}" class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                <i data-lucide="layout-grid"></i>
-                <span>Dashboard</span>
-            </a>
-            <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i data-lucide="activity"></i>
                 <span>Overview</span>
+            </a>
+            <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i data-lucide="layout-grid"></i>
+                <span>Dashboard</span>
             </a>
         </div>
 
