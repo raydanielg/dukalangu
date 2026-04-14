@@ -13,7 +13,18 @@ class StoreBuilderController extends Controller
         $this->middleware('auth');
     }
 
+    // Show all stores list
     public function index()
+    {
+        $stores = Store::where('user_id', auth()->id())
+            ->with(['products', 'orders'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('dashboard.store.index', compact('stores'));
+    }
+
+    // Show builder form (create or edit)
+    public function create()
     {
         $store = Store::where('user_id', auth()->id())->first();
         return view('dashboard.store.builder', compact('store'));
