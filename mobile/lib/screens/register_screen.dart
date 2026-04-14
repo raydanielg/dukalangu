@@ -121,23 +121,15 @@ class _RegisterScreenState extends State<RegisterScreen>
 
     if (result['success']) {
       if (mounted) {
-        // Show success message
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              result['message'] ?? 'Account created successfully!',
-              style: GoogleFonts.nunito(),
-            ),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        );
+        // Get user name from response
+        final userData = result['data']?['user'];
+        final userName = userData?['name'] ?? 'User';
 
-        // Navigate to dashboard after short delay
-        await Future.delayed(const Duration(seconds: 1));
+        // Show powerful welcome notification for first time
+        _showWelcomeNotification(userName, isFirstTime: true);
+
+        // Navigate to dashboard after delay
+        await Future.delayed(const Duration(milliseconds: 2000));
 
         if (mounted) {
           Navigator.of(context).pushAndRemoveUntil(
