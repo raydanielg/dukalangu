@@ -97,23 +97,15 @@ class _AuthScreenState extends State<AuthScreen>
 
     if (result['success']) {
       if (mounted) {
-        // Show success message
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              result['message'] ?? 'Login successful!',
-              style: GoogleFonts.nunito(),
-            ),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        );
+        // Get user name from response
+        final userData = result['data']?['user'];
+        final userName = userData?['name'] ?? 'User';
+
+        // Show powerful welcome notification
+        _showWelcomeNotification(userName);
 
         // Navigate to dashboard after short delay
-        await Future.delayed(const Duration(milliseconds: 800));
+        await Future.delayed(const Duration(milliseconds: 1500));
 
         if (mounted) {
           Navigator.of(context).pushAndRemoveUntil(
@@ -384,30 +376,90 @@ class _AuthScreenState extends State<AuthScreen>
   }
 
   Widget _buildErrorBanner() {
-    return Container(
-      padding: const EdgeInsets.all(12),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: AppTheme.errorColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppTheme.errorColor.withOpacity(0.3),
+        gradient: LinearGradient(
+          colors: [
+            AppTheme.errorColor.withOpacity(0.15),
+            AppTheme.errorColor.withOpacity(0.05),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
         ),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: AppTheme.errorColor.withOpacity(0.4),
+          width: 1.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppTheme.errorColor.withOpacity(0.15),
+            blurRadius: 8,
+            spreadRadius: 2,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(
-            Icons.error_outline,
-            color: AppTheme.errorColor,
-            size: 20,
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: AppTheme.errorColor.withOpacity(0.2),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.error_outline,
+              color: AppTheme.errorColor,
+              size: 20,
+            ),
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 12),
           Expanded(
-            child: Text(
-              _errorMessage!,
-              style: GoogleFonts.nunito(
-                fontSize: 13,
-                color: AppTheme.errorColor,
-                fontWeight: FontWeight.w500,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Error',
+                  style: GoogleFonts.nunito(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: AppTheme.errorColor,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  _errorMessage!,
+                  style: GoogleFonts.nunito(
+                    fontSize: 13,
+                    color: AppTheme.errorColor.withOpacity(0.9),
+                    fontWeight: FontWeight.w500,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                _errorMessage = null;
+              });
+            },
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: AppTheme.errorColor.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.close,
+                color: AppTheme.errorColor.withOpacity(0.7),
+                size: 16,
               ),
             ),
           ),
