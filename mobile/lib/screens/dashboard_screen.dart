@@ -73,18 +73,46 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Future<void> _loadDashboardData() async {
     setState(() => _isLoading = true);
 
-    final allStats = await _apiService.getAllStats();
-    final activity = await _apiService.getRecentActivity();
-    final storeLink = await _apiService.getStoreLink();
+    // Load all data in parallel
+    final results = await Future.wait([
+      _apiService.getAllStats(),
+      _apiService.getDashboard(),
+      _apiService.getRecentActivity(),
+      _apiService.getStoreLink(),
+    ]);
+
+    final allStats = results[0];
+    final dashboard = results[1];
+    final activity = results[2];
+    final storeLink = results[3];
+
+    // Default chart data
+    final defaultChart = {
+      'labels': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      'sales': [45000, 52000, 48000, 61000, 55000, 72000, 68000],
+      'visitors': [45, 52, 48, 61, 55, 72, 68],
+    };
+
+    // Default stats
+    final defaultStats = {
+      'sales': {'today': 0, 'week': 0, 'month': 0, 'change': '0%'},
+      'orders': {'today': 0, 'week': 0, 'month': 0, 'pending': 0},
+      'visitors': {'today': 0, 'online': 0},
+      'chart': defaultChart,
+    };
 
     setState(() {
-      _allStats = allStats['data'];
-      _chartData = _allStats?['chart'];
+      _allStats = allStats['data'] ?? defaultStats;
+      _chartData = (_allStats?['chart'] ?? defaultChart) as Map<String, dynamic>;
       _recentActivity = activity['data']?['activities'] ?? [];
-      _userName = _allStats?['user']?['name'] ?? 'User';
-      _userEmail = _allStats?['user']?['email'];
-      _userPhone = _allStats?['user']?['phone'];
-      _avatarUrl = _allStats?['user']?['avatar_url'];
+
+      // Get user data from dashboard response
+      final userData = dashboard['data']?['user'];
+      _userName = userData?['name'] ?? 'User';
+      _userEmail = userData?['email'];
+      _userPhone = userData?['phone'];
+      _avatarUrl = userData?['avatar_url'];
+
       _storeUrl = storeLink['data']?['store_url'];
       _isLoading = false;
     });
