@@ -107,8 +107,9 @@ class _RegisterScreenState extends State<RegisterScreen>
 
     final result = await _apiService.register(
       name: _nameController.text.trim(),
+      phone: _phoneController.text.trim(),
       email: _emailController.text.trim().isEmpty
-          ? '${_phoneController.text}@placeholder.com'
+          ? null
           : _emailController.text.trim(),
       password: _passwordController.text,
       passwordConfirmation: _confirmPasswordController.text,

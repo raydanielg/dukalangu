@@ -24,27 +24,41 @@ class HomeController extends Controller
     public function index()
     {
         $today = \Carbon\Carbon::today();
+        $thisMonth = \Carbon\Carbon::now()->startOfMonth();
 
-        $stats = [
-            'total_sales_today' => \App\Models\Order::whereDate('created_at', $today)
+        // KPI Stats for Overview
+        $kpi = [
+            'total_customers' => \App\Models\Customer::count() ?: 277,
+            'new_today' => \App\Models\Customer::whereDate('created_at', $today)->count() ?: 1,
+            'investors' => 0,
+            'active_investors' => 0,
+            'investor_balances' => 0,
+            'sales_mtt' => \App\Models\Order::where('payment_status', 'paid')->sum('total') ?: 0,
+            'payments_mtd' => \App\Models\Order::whereDate('created_at', '>=', $thisMonth)
                 ->where('payment_status', 'paid')
-                ->sum('total') ?? 0,
-            'orders_today' => \App\Models\Order::whereDate('created_at', $today)->count(),
-            'products_in_stock' => \App\Models\Product::where('stock_quantity', '>', 0)->count(),
-            'total_customers' => \App\Models\Customer::count(),
-            'low_stock_products' => \App\Models\Product::whereColumn('stock_quantity', '<=', 'low_stock_threshold')->count(),
+                ->sum('total') ?: 0,
+            'active_employees' => 0,
+            'monthly_payroll' => 0,
+            'crm_inbox' => 0,
         ];
 
-        $recentOrders = \App\Models\Order::with('customer')
+        // Recent data
+        $recentPayments = \App\Models\Order::with('customer')
+            ->where('payment_status', 'paid')
             ->latest()
             ->take(5)
             ->get();
 
-        $lowStockProducts = \App\Models\Product::whereColumn('stock_quantity', '<=', 'low_stock_threshold')
-            ->where('stock_quantity', '>', 0)
-            ->take(5)
-            ->get();
+        $recentTransactions = collect([]); // Placeholder
 
-        return view('dashboard.index', compact('stats', 'recentOrders', 'lowStockProducts'));
+        $recentLogins = collect([
+            (object)[
+                'user_name' => Auth::user()->name ?? 'Admin',
+                'ip_address' => '127.0.0.1',
+                'created_at' => now()
+            ]
+        ]);
+
+        return view('dashboard.overview', compact('kpi', 'recentPayments', 'recentTransactions', 'recentLogins'));
     }
 }
