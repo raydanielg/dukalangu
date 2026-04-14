@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\Customer;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -13,6 +17,34 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('dashboard.index');
+        $today = Carbon::today();
+        $thisMonth = Carbon::now()->startOfMonth();
+
+        // Get statistics
+        $stats = [
+            'total_sales_today' => Order::whereDate('created_at', $today)
+                ->where('payment_status', 'paid')
+                ->sum('total') ?? 0,
+            'orders_today' => Order::whereDate('created_at', $today)->count(),
+            'total_products' => Product::where('is_active', true)->count(),
+            'products_in_stock' => Product::where('stock_quantity', '>', 0)->count(),
+            'low_stock_products' => Product::whereColumn('stock_quantity', '<=', 'low_stock_threshold')->count(),
+            'total_customers' => Customer::count(),
+            'new_customers_this_month' => Customer::where('created_at', '>=', $thisMonth)->count(),
+        ];
+
+        // Recent orders
+        $recentOrders = Order::with('customer')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        // Low stock products
+        $lowStockProducts = Product::whereColumn('stock_quantity', '<=', 'low_stock_threshold')
+            ->where('stock_quantity', '>', 0)
+            ->take(5)
+            ->get();
+
+        return view('dashboard.index', compact('stats', 'recentOrders', 'lowStockProducts'));
     }
 }

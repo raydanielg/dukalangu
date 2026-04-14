@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 import '../services/api_service.dart';
 import 'home_screen.dart';
+import 'forgot_password_screen.dart';
+import 'register_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -14,7 +16,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen>
     with TickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _apiService = ApiService();
 
@@ -65,7 +67,7 @@ class _AuthScreenState extends State<AuthScreen>
   @override
   void dispose() {
     _controller.dispose();
-    _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -85,7 +87,7 @@ class _AuthScreenState extends State<AuthScreen>
     });
 
     final result = await _apiService.login(
-      email: _emailController.text.trim(),
+      email: '${_phoneController.text.trim()}@placeholder.com',
       password: _passwordController.text,
     );
 
@@ -104,6 +106,18 @@ class _AuthScreenState extends State<AuthScreen>
         _errorMessage = result['message'] ?? 'Login failed';
       });
     }
+  }
+
+  void _navigateToForgotPassword() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const ForgotPasswordScreen()),
+    );
+  }
+
+  void _navigateToRegister() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const RegisterScreen()),
+    );
   }
 
   @override
@@ -212,7 +226,7 @@ class _AuthScreenState extends State<AuthScreen>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'PREVENTION & COMBATING\nOF CORRUPTION BUREAU',
+              'CREATE YOUR ONLINE STORE & SELL ANYWHERE',
               textAlign: TextAlign.center,
               style: GoogleFonts.nunito(
                 fontSize: 11,
@@ -333,7 +347,7 @@ class _AuthScreenState extends State<AuthScreen>
         ),
         const SizedBox(height: 6),
         Text(
-          'Sign in to continue your application',
+          'Sign in to your account',
           textAlign: TextAlign.center,
           style: GoogleFonts.nunito(
             fontSize: 14,
