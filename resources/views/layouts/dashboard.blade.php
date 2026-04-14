@@ -713,128 +713,29 @@
     @yield('styles')
 </head>
 <body>
-    <!-- Sidebar - Snippe Style -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h3 class="sidebar-brand">
-                <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}">
-                {{ config('app.name') }}
-            </h3>
-        </div>
-
-        <nav class="sidebar-menu">
-            <div class="menu-section-title">Main Menu</div>
-            <a href="{{ route('home') }}" class="menu-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                <i class="bi bi-grid"></i>
-                <span>Overview</span>
-            </a>
-            <a href="{{ route('dashboard') }}" class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="bi bi-speedometer2"></i>
-                <span>Dashboard</span>
-            </a>
-            <a href="#" class="menu-item has-submenu" onclick="toggleSubmenu('analytics-submenu'); return false;">
-                <i class="bi bi-graph-up"></i>
-                <span>Analytics</span>
-                <i class="bi bi-chevron-down ms-auto small"></i>
-            </a>
-            <div id="analytics-submenu" class="submenu">
-                <a href="#" class="submenu-item">Sales Report</a>
-                <a href="#" class="submenu-item">Products Report</a>
-            </div>
-
-            <div class="menu-section-title">Business</div>
-            <a href="#" class="menu-item has-submenu" onclick="toggleSubmenu('products-submenu'); return false;">
-                <i class="bi bi-box-seam"></i>
-                <span>Products</span>
-                <i class="bi bi-chevron-down ms-auto small"></i>
-            </a>
-            <div id="products-submenu" class="submenu">
-                <a href="{{ route('products.index') }}" class="submenu-item {{ request()->routeIs('products.index') ? 'active' : '' }}">All Products</a>
-                <a href="{{ route('products.in-stock') }}" class="submenu-item {{ request()->routeIs('products.in-stock') ? 'active' : '' }}">In Stock</a>
-                <a href="{{ route('products.out-of-stock') }}" class="submenu-item {{ request()->routeIs('products.out-of-stock') ? 'active' : '' }}">Out of Stock</a>
-                <a href="{{ route('products.create') }}" class="submenu-item {{ request()->routeIs('products.create') ? 'active' : '' }}">Add Product</a>
-            </div>
-            <a href="{{ route('orders') }}" class="menu-item {{ request()->routeIs('orders') ? 'active' : '' }}">
-                <i class="bi bi-cart3"></i>
-                <span>Orders</span>
-            </a>
-            <a href="{{ route('pos') }}" class="menu-item {{ request()->routeIs('pos') ? 'active' : '' }}">
-                <i class="bi bi-cash-coin"></i>
-                <span>POS</span>
-                <span class="badge-new">New</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="bi bi-people"></i>
-                <span>Customers</span>
-            </a>
-
-            <div class="menu-section-title">Settings</div>
-            <a href="#" class="menu-item">
-                <i class="bi bi-shop"></i>
-                <span>Store Settings</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="bi bi-person-circle"></i>
-                <span>My Profile</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="bi bi-gear"></i>
-                <span>Settings</span>
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">
-            <a href="#" class="menu-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Log out</span>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </div>
-    </aside>
+    <!-- Sidebar Component -->
+    @include('layouts.sidebar')
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Top Header - Snippe Style -->
-        <header class="top-header">
-            <div class="top-header-left">
-                <h1>@yield('page-title', 'Overview')</h1>
-            </div>
-            <div class="top-header-right">
-                <div class="header-search">
-                    <i class="bi bi-search"></i>
-                    <input type="text" placeholder="Search...">
-                </div>
-                <button class="header-btn">
-                    <i class="bi bi-bell"></i>
-                    <span class="header-badge">3</span>
-                </button>
-                <button class="header-btn">
-                    <i class="bi bi-question-circle"></i>
-                </button>
-                <div class="header-user">
-                    <div class="header-avatar">
-                        {{ substr(Auth::user()->name ?? 'U', 0, 1) }}
-                    </div>
-                    <span class="header-username">{{ Auth::user()->email ?? Auth::user()->phone ?? 'User' }}</span>
-                    <i class="bi bi-chevron-down small ms-2"></i>
-                </div>
-            </div>
-        </header>
+        <!-- Header Component -->
+        @include('layouts.header')
 
         <!-- Content Area -->
-        <div class="content-wrapper">
+        <div class="content-wrapper animate__animated animate__fadeIn">
             @yield('content')
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function toggleSubmenu(id) {
-            const submenu = document.getElementById(id);
-            submenu.classList.toggle('show');
-        }
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Re-initialize icons after page load
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
     </script>
     @yield('scripts')
 </body>
