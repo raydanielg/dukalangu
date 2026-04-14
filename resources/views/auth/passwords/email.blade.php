@@ -13,7 +13,7 @@
                 <div class="logo-section">
                     <div class="logo-circle">
                         <!-- Dukalangu Logo -->
-                        <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 100px; height: auto; filter: brightness(0) invert(1);">
+                        <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 120px; height: auto;">
                     </div>
                 </div>
                 <h1 class="portal-title">Password Recovery</h1>

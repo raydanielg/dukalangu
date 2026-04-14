@@ -110,7 +110,7 @@ TIGOPESA_API_KEY=your_key
 
 ## Contributing
 
-We welcome contributions to make Dukalangu better! Please follow these steps:
+We welcome contributions to make Salamapay better! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -128,7 +128,7 @@ Need help? Contact us:
 
 ## License
 
-Dukalangu is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Salamapay is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ---
 
