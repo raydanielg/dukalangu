@@ -277,6 +277,82 @@ class ApiService {
     }
   }
 
+  // Get sales chart data
+  Future<Map<String, dynamic>> getSalesChart(String period) async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard/chart?sales&period=$period'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+      return data;
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Failed to get chart: $e',
+      };
+    }
+  }
+
+  // Get visitor stats
+  Future<Map<String, dynamic>> getVisitorStats() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard/visitors'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+      return data;
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Failed to get visitors: $e',
+      };
+    }
+  }
+
+  // Get store link
+  Future<Map<String, dynamic>> getStoreLink() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/store/link'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+      return data;
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Failed to get store link: $e',
+      };
+    }
+  }
+
+  // Get all stats
+  Future<Map<String, dynamic>> getAllStats() async {
+    try {
+      final headers = await getHeaders();
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard/all-stats'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+      return data;
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Failed to get stats: $e',
+      };
+    }
+  }
+
   // Check if user is logged in
   Future<bool> isLoggedIn() async {
     final token = await getToken();
