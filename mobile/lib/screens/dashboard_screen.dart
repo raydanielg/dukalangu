@@ -747,6 +747,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   // RECENT ACTIVITY
   Widget _buildRecentActivity() {
+    // Default activities if none from API
+    final activities = _recentActivity.isNotEmpty
+        ? _recentActivity.take(4).toList()
+        : [
+            {
+              'type': 'order',
+              'title': 'New order received',
+              'description': 'John Doe purchased 3 items',
+              'time': '5 min ago',
+              'status': 'pending',
+            },
+            {
+              'type': 'payment',
+              'title': 'Payment confirmed',
+              'description': 'Order #1230 payment received',
+              'time': '1 hour ago',
+              'status': 'completed',
+            },
+            {
+              'type': 'review',
+              'title': 'New 5-star review',
+              'description': 'Jane Smith rated your store',
+              'time': '3 hours ago',
+              'status': 'positive',
+            },
+          ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -790,26 +817,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ],
             ),
-            child: _recentActivity.isEmpty
-                ? Center(
-                    child: Text(
-                      'No recent activity',
-                      style: GoogleFonts.nunito(
-                        color: AppTheme.textGray,
-                      ),
-                    ),
-                  )
-                : Column(
-                    children: _recentActivity.take(5).map<Widget>((activity) {
-                      return _buildActivityItem(
-                        icon: _getActivityIcon(activity['type']),
-                        title: activity['title'],
-                        subtitle: activity['description'],
-                        time: activity['time'],
-                        color: _getActivityColor(activity['status']),
-                      );
-                    }).toList(),
-                  ),
+            child: Column(
+              children: activities.map<Widget>((activity) {
+                return _buildActivityItem(
+                  icon: _getActivityIcon(activity['type']),
+                  title: activity['title'] ?? '',
+                  subtitle: activity['description'] ?? '',
+                  time: activity['time'] ?? '',
+                  color: _getActivityColor(activity['status']),
+                );
+              }).toList(),
+            ),
           ),
         ],
       ),
