@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $today = Carbon::today();
         $thisMonth = Carbon::now()->startOfMonth();
 
-        // Get statistics
+        // Simple Dashboard Stats
         $stats = [
             'total_sales_today' => Order::whereDate('created_at', $today)
                 ->where('payment_status', 'paid')
