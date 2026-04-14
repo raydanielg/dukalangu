@@ -1,6 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tz.go.pccb.salama">
     <application
-        android:label="mobile"
+        android:label="Salama"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
