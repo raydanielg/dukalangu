@@ -45,6 +45,29 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        return view('dashboard.index', compact('stats', 'recentOrders', 'lowStockProducts'));
+        // Recent transactions data for dashboard
+        $recentTransactions = Order::with('customer')
+            ->latest()
+            ->take(10)
+            ->get();
+
+        // Sales trend (last 7 days)
+        $salesTrend = [];
+        $trendLabels = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::today()->subDays($i);
+            $trendLabels[] = $date->format('D');
+            $salesTrend[] = Order::whereDate('created_at', $date)
+                ->where('payment_status', 'paid')
+                ->sum('total');
+        }
+
+        // Top selling products
+        $topProducts = Product::where('store_id', auth()->user()->store_id ?? 0)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('dashboard.index', compact('stats', 'recentOrders', 'lowStockProducts', 'recentTransactions', 'salesTrend', 'trendLabels', 'topProducts'));
     }
 }
