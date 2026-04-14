@@ -68,81 +68,77 @@
 </div>
 
 @if($stores->count() > 0)
-    <!-- Stores Grid -->
-    <div class="row g-4">
-        @foreach($stores as $store)
-        <div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp" style="animation-delay: {{ $loop->iteration * 0.1 }}s;">
-            <div class="store-card">
-                <!-- Store Preview -->
-                <div class="store-preview">
-                    @if($store->logo)
-                        <img src="{{ asset('storage/' . $store->logo) }}" alt="{{ $store->name }}" class="store-logo">
-                    @else
-                        <div class="store-logo-placeholder">
-                            <i data-lucide="store"></i>
-                        </div>
-                    @endif
-                    <div class="store-overlay">
-                        <div class="store-actions">
-                            <a href="{{ route('store.public', $store->slug) }}" target="_blank" class="action-btn view" title="View Store">
-                                <i data-lucide="eye"></i>
-                            </a>
-                            <a href="{{ route('store.builder') }}" class="action-btn edit" title="Edit Store">
-                                <i data-lucide="edit-2"></i>
-                            </a>
-                            <button type="button" class="action-btn delete" title="Delete Store" onclick="confirmDelete({{ $store->id }})">
-                                <i data-lucide="trash-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Store Info -->
-                <div class="store-info">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <h5 class="store-name">{{ $store->name }}</h5>
-                        @if($loop->first)
-                            <span class="badge bg-primary">Main Store</span>
-                        @endif
-                    </div>
-                    <p class="store-description">{{ Str::limit($store->description, 60) }}</p>
-                    
-                    <div class="store-meta">
-                        <span class="badge bg-{{ $store->is_active ? 'success' : 'secondary' }}">
-                            {{ $store->is_active ? 'Active' : 'Inactive' }}
-                        </span>
-                        <span class="store-template">{{ ucfirst($store->template) }}</span>
-                    </div>
-
-                    <div class="store-link mt-3">
-                        <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" value="{{ url('/store/' . $store->slug) }}" readonly id="link-{{ $store->id }}">
-                            <button class="btn btn-outline-secondary" type="button" onclick="copyLink('link-{{ $store->id }}')">
-                                <i data-lucide="copy" style="width: 16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="store-stats mt-3">
-                        <div class="stat-item">
-                            <i data-lucide="package"></i>
-                            <span>{{ $store->products->count() }} Products</span>
-                        </div>
-                        <div class="stat-item">
-                            <i data-lucide="shopping-bag"></i>
-                            <span>{{ $store->orders->count() }} Orders</span>
-                        </div>
-                    </div>
-
-                    <div class="store-footer mt-3">
-                        <a href="{{ route('store.public', $store->slug) }}" target="_blank" class="btn btn-primary w-100">
-                            <i data-lucide="external-link" class="me-2"></i>View Online Store
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <!-- Stores Table -->
+    <div class="dashboard-card animate__animated animate__fadeIn">
+        <div class="dashboard-card-header d-flex justify-content-between align-items-center">
+            <h5 class="dashboard-card-title mb-0">
+                <i data-lucide="list" class="me-2"></i>All Stores
+            </h5>
+            <span class="badge bg-secondary">{{ $stores->count() }} Total</span>
         </div>
-        @endforeach
+        <div class="dashboard-card-body p-0">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">ID</th>
+                        <th>Store Name</th>
+                        <th>Contact</th>
+                        <th style="width: 200px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($stores as $store)
+                    <tr>
+                        <td>
+                            <span class="fw-bold text-primary">#{{ $store->id }}</span>
+                            @if($loop->first)
+                                <br><span class="badge bg-primary mt-1" style="font-size: 10px;">Main</span>
+                            @endif
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                @if($store->logo)
+                                    <img src="{{ asset('storage/' . $store->logo) }}" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                                @else
+                                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+                                        <i data-lucide="store" style="width: 20px; height: 20px; color: #9ca3af;"></i>
+                                    </div>
+                                @endif
+                                <div>
+                                    <div class="fw-semibold">{{ $store->name }}</div>
+                                    <small class="text-muted">{{ Str::limit($store->description, 30) }}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="small">
+                                <div><i data-lucide="phone" style="width: 14px;" class="me-1"></i>+255 {{ $store->phone }}</div>
+                                @if($store->whatsapp)
+                                    <div class="text-success"><i data-lucide="message-circle" style="width: 14px;" class="me-1"></i>+255 {{ $store->whatsapp }}</div>
+                                @endif
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="{{ route('store.public', $store->slug) }}" target="_blank" class="btn btn-sm btn-success" title="View Store">
+                                    <i data-lucide="eye" style="width: 16px;"></i>
+                                </a>
+                                <a href="{{ route('store.builder') }}" class="btn btn-sm btn-primary" title="Edit Store">
+                                    <i data-lucide="edit" style="width: 16px;"></i>
+                                </a>
+                                <a href="{{ route('store.public', $store->slug) }}" target="_blank" class="btn btn-sm btn-info" title="Open in New Tab">
+                                    <i data-lucide="external-link" style="width: 16px;"></i>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-danger" title="Delete Store" onclick="confirmDelete({{ $store->id }})">
+                                    <i data-lucide="trash-2" style="width: 16px;"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Delete Form (Hidden) -->
@@ -152,13 +148,18 @@
     </form>
 
 @else
-    <!-- Empty State -->
+    <!-- Empty State with Nice SVG -->
     <div class="empty-state animate__animated animate__fadeIn">
         <div class="empty-icon">
-            <i data-lucide="store"></i>
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                <line x1="12" y1="2" x2="12" y2="12" stroke-dasharray="4 4"></line>
+                <circle cx="12" cy="7" r="2" fill="currentColor" stroke="none"></circle>
+            </svg>
         </div>
-        <h4>No Stores Yet</h4>
-        <p class="text-muted">Create your first online store to start selling!</p>
+        <h4 class="mt-3">No Stores Yet</h4>
+        <p class="text-muted mb-4">Create your first online store to start selling!</p>
         <a href="{{ route('store.builder') }}" class="btn btn-primary btn-lg">
             <i data-lucide="plus-circle" class="me-2"></i>Create Your First Store
         </a>
