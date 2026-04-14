@@ -419,20 +419,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 20),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.white,
-                  const Color(0xFFf8fafc),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: Colors.white.withOpacity(0.15),
               borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.3),
+                width: 1.5,
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
+                  color: Colors.black.withOpacity(0.1),
                   blurRadius: 20,
-                  spreadRadius: 5,
+                  spreadRadius: 2,
                   offset: const Offset(0, 8),
                 ),
               ],
