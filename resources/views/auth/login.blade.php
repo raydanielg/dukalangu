@@ -11,10 +11,8 @@
         <div class="auth-branding">
             <div class="branding-content">
                 <div class="logo-section">
-                    <div class="logo-circle">
-                        <!-- Salamapay Logo White Version -->
-                        <img src="{{ asset('Salama logo2 .png') }}" alt="Salamapay" class="salamapay-logo" style="width: 120px; height: auto;">
-                    </div>
+                    <!-- Logo without box/circle design -->
+                    <img src="{{ asset('Salama logo.png') }}" alt="{{ config('app.name') }}" class="salamapay-logo" style="width: 150px; height: auto; margin-bottom: 16px;">
                 </div>
                 <h1 class="portal-title">{{ config('app.name') }}</h1>
                 <p class="portal-subtitle">CREATE YOUR ONLINE STORE & SELL ANYWHERE</p>
@@ -47,7 +45,24 @@
                 <form method="POST" action="{{ route('login') }}" class="login-form">
                     @csrf
 
-                    <!-- Email Field -->
+                    <!-- Phone Number Field -->
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </span>
+                            <input id="phone" type="tel" class="form-input @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="tel" autofocus placeholder="Phone Number*" pattern="[0-9]{10}" title="Enter 10 digit phone number (e.g., 0712345678)">
+                        </div>
+                        @error('phone')
+                            <span class="error-message" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <!-- Optional Email Field -->
                     <div class="form-group">
                         <div class="input-wrapper">
                             <span class="input-icon">
@@ -56,7 +71,7 @@
                                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                                 </svg>
                             </span>
-                            <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email Address*">
+                            <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email Address (Optional)">
                         </div>
                         @error('email')
                             <span class="error-message" role="alert">
@@ -109,7 +124,7 @@
 
                     <!-- Create Account -->
                     <div class="create-account">
-                        <p>Don't have an account? <a href="{{ route('register') }}">Create an account</a></p>
+                        <p>Don't have an account? <a href="{{ route('register') }}" style="color: var(--primary-green); font-weight: 700;">Create an account here</a></p>
                     </div>
 
                     <!-- Help Section -->
