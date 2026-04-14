@@ -99,7 +99,12 @@
 
                 <!-- Store Info -->
                 <div class="store-info">
-                    <h5 class="store-name">{{ $store->name }}</h5>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h5 class="store-name">{{ $store->name }}</h5>
+                        @if($loop->first)
+                            <span class="badge bg-primary">Main Store</span>
+                        @endif
+                    </div>
                     <p class="store-description">{{ Str::limit($store->description, 60) }}</p>
                     
                     <div class="store-meta">
