@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Reset Password')
-@section('meta_description', 'Reset your '.config('app.name').' account password. Securely regain access to your online store and business dashboard.')
-@section('meta_keywords', 'reset password, forgot password, '.config('app.name').' password recovery, business account recovery')
+@section('meta_description', 'Reset your account password. Securely regain access to your online store and business dashboard.')
+@section('meta_keywords', 'reset password, forgot password, password recovery, business account recovery')
 
 @section('content')
 <div class="auth-container">

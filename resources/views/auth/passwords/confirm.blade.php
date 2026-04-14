@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Confirm Password')
-@section('meta_description', 'Confirm your '.config('app.name').' password to continue. Secure access to your online store and business dashboard.')
-@section('meta_keywords', 'confirm password, verify password, '.config('app.name').' security, business account access')
+@section('meta_description', 'Confirm your password to continue. Secure access to your online store and business dashboard.')
+@section('meta_keywords', 'confirm password, verify password, security, business account access')
 
 @section('content')
 <div class="auth-container">

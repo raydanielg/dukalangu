@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Set New Password')
-@section('meta_description', 'Set your new '.config('app.name').' password securely. Regain access to your online store and continue managing your business.')
-@section('meta_keywords', 'reset password, new password, '.config('app.name').' account recovery, secure password reset')
+@section('meta_description', 'Set your new password securely. Regain access to your online store and continue managing your business.')
+@section('meta_keywords', 'reset password, new password, account recovery, secure password reset')
 
 @section('content')
 <div class="auth-container">

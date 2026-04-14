@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Verify Email')
-@section('meta_description', 'Verify your email address on '.config('app.name').'. Complete your registration and start creating your online store and selling products.')
-@section('meta_keywords', 'verify email, email verification, '.config('app.name').' confirmation, business account activation, online store setup')
+@section('meta_description', 'Verify your email address. Complete your registration and start creating your online store and selling products.')
+@section('meta_keywords', 'verify email, email verification, confirmation, business account activation, online store setup')
 
 @section('content')
 <div class="auth-container">

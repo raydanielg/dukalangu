@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Create Account')
-@section('meta_description', 'Create your '.config('app.name').' account today. Start selling online, manage your store, and grow your business in Tanzania.')
-@section('meta_keywords', 'register '.config('app.name').', create store, sign up, business account Tanzania, online seller, wafanyabiashara')
+@section('meta_description', 'Create your account today. Start selling online, manage your store, and grow your business in Tanzania.')
+@section('meta_keywords', 'register, create store, sign up, business account Tanzania, online seller, wafanyabiashara')
 
 @section('content')
 <div class="auth-container">
