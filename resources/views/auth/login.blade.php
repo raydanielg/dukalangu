@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('title', 'Sign In')
-@section('meta_description', 'Sign in to your '.config('app.name').' account. Manage your online store, products, and orders all in one place.')
-@section('meta_keywords', 'login '.config('app.name').', sign in, business account Tanzania, online store login, manage products')
+@section('meta_description', 'Sign in to your account. Manage your online store, products, and orders all in one place.')
+@section('meta_keywords', 'login, sign in, business account Tanzania, online store login, manage products')
 
 @section('content')
 <div class="auth-container">

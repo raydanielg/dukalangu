@@ -7,25 +7,25 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- SEO Meta Tags - Power Packed for Salamapay -->
-    <title>@yield('title', 'Salamapay') | Tanzania\'s Trusted Payment & Job Platform - Secure & Fast</title>
-    <meta name="description" content="@yield('meta_description', 'Salamapay is Tanzania\'s trusted platform for secure payments, job opportunities, and career growth. Connect with employers, process payments, and build your future today.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'Salamapay, payments Tanzania, mobile money, job portal, secure payments, employment, career opportunities, ajira, kazi Tanzania, fintech Tanzania')">
-    <meta name="author" content="Salamapay Team">
+    <!-- SEO Meta Tags - Power Packed -->
+    <title>@yield('title') | {{ config('app.name') }} - Tanzania's Trusted E-Commerce Platform</title>
+    <meta name="description" content="@yield('meta_description', config('app.name') . ' helps Tanzanian entrepreneurs create online stores, advertise products, and receive orders seamlessly.')">
+    <meta name="keywords" content="@yield('meta_keywords', config('app.name') . ', Tanzania e-commerce, online store, sell products, business platform, biashara mtandaoni')">
+    <meta name="author" content="{{ config('app.name') }} Team">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('og_title', 'Salamapay - Tanzania\'s Trusted Payment & Job Platform')">
-    <meta property="og:description" content="@yield('og_description', 'Secure payments and job opportunities in one platform. Join thousands of Tanzanians trusting Salamapay for their career and financial needs!')">
+    <meta property="og:title" content="@yield('og_title') | {{ config('app.name') }} - Tanzania's Trusted E-Commerce Platform">
+    <meta property="og:description" content="@yield('og_description', 'Create your online store, advertise products, and receive orders seamlessly.')">
     <meta property="og:image" content="@yield('og_image', asset('Salama logo.png'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('twitter_title', 'Salamapay - Tanzania\'s Trusted Payment & Job Platform')">
-    <meta property="twitter:description" content="@yield('twitter_description', 'Secure payments and job opportunities in one trusted platform.')">
+    <meta property="twitter:title" content="@yield('twitter_title') | {{ config('app.name') }} - Tanzania's Trusted E-Commerce Platform">
+    <meta property="twitter:description" content="@yield('twitter_description', 'Create your online store and sell products seamlessly.')">
     <meta property="twitter:image" content="@yield('twitter_image', asset('Salama logo.png'))">
 
     <!-- Canonical URL -->
