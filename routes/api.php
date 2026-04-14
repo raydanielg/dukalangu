@@ -59,6 +59,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/orders', [OrderController::class, 'create']);
     Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
     Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel']);
+    Route::get('/orders/stats', [OrderController::class, 'getStats']);
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
+    Route::post('/orders', [OrderController::class, 'create']);
+    Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
+    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel']);
 });
 
 // Health check
