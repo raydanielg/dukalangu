@@ -17,6 +17,7 @@ import 'about_screen.dart';
 import 'payment_methods_screen.dart';
 import 'delivery_options_screen.dart';
 import 'notifications_screen.dart';
+import 'change_password_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -1084,7 +1085,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   _SettingsItem(
                     icon: Icons.lock_outline,
                     title: 'Change Password',
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ChangePasswordScreen()),
+                    ),
                   ),
                 ],
               ),
@@ -1142,7 +1145,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 20),
               _buildSettingsLogoutButton(),
-              const SizedBox(height: 100),
+              const SizedBox(height: 80),
             ],
           ),
         ),
